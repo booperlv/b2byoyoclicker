@@ -1,0 +1,274 @@
+.about-text-left, .contest-text-left {
+    border-right: solid 2px #212529;
+}
+
+.about-text-right, .contest-text-right {
+    border-left: solid 2px #212529;
+}
+
+.alternate-bg {
+    background-color: #000000;
+    color: #ffffff;
+}
+
+.primary-bg {
+    background-color: #ffb900;
+    color: #000000;
+}
+
+.row-eq-height {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+}
+
+.custom-nav > li {
+    margin-right: 5px !important;
+}
+
+.custom-nav > li > a.nav-link.js-scroll-trigger {
+    padding: 0.5rem !important;
+    font-size: 13px !important;
+}
+
+h3#regSubheading {
+    font-size: 2.3rem;
+    font-style: normal !important;
+    font-weight: bold;
+}
+span#regText {
+    font-size: 18px;
+}
+
+.img-circle {
+    border-radius: 100% !important;
+}
+
+.img-org {
+    width: 250px;
+}
+
+.logo-img {
+    width: 25%;
+}
+
+a.navbar-logo {
+    width: 60%;
+}
+
+header.masthead {
+    height: 100vh;
+    background-position: bottom center;
+}
+
+a#heroButton {
+    margin-bottom: -160px;
+}
+
+.format-mobile {
+    display: none;
+}
+
+#organizers span {
+    font-size: 13.5px;
+}
+
+.custom-drop {
+    border: none;
+    padding: 0;
+    margin-top: 0;
+}
+
+.custom-drop > a {
+    color:#ffffff;
+    font-family: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+    font-size: 13px;
+    color: #fff;
+    letter-spacing: 0.0625em;
+}
+
+.custom-drop > a:hover {
+    color: #ffb900;
+    background-color: rgb(255, 255, 255, 0);
+}
+
+.dropdown-item.active, .dropdown-item:active {
+    background-color: rgb(255, 255, 255, 0) !important;
+}
+
+.custom-toggle {
+    margin-left: 8px;
+}
+
+.fs-format {
+    margin-top: 80px !important;
+}
+
+h2#demosHeading, h2#compdemosHeading {
+    color: #000000 !important;
+}
+
+section#trick {
+    padding-bottom: 0;
+}
+
+section#prizes span {
+    font-size: 18px;
+}
+
+section#sponsors img {
+    width: 60%;
+}
+
+svg.svg-inline--fa.fa-times-circle.fa-w-16.close-icon {
+    font-size: 30px;
+}
+
+@media only screen and (max-width: 768px) { 
+    .img-org {
+        width: 200px;
+    }
+
+    .format-desktop {
+        display: none;
+    }
+
+    .format-mobile {
+        display: block;
+    }
+
+    .logo-img {
+        width: 50%;
+    }
+
+    header.masthead {
+        height: 70vh;
+    }
+
+    #organizers span {
+        font-size: 13px;
+    }
+
+    section#prizes .col:last-child {
+        margin-top: 30px;
+    }
+
+    section#sponsors img {
+        width: 100%;
+    }
+
+    section#results div.row > div.col-md-4, section#comp-trick div.container:first-child div.row > div.col-md-4:nth-child(4), section#comp-trick div.container:first-child div.row > div.col-md-4:last-child {
+        margin-top: 20px;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    header.masthead .masthead-heading {
+        font-size: 2.5rem;
+    }
+    
+    .about-text-left, .contest-text-left, .about-text-right, .contest-text-right {
+        border-left: none;
+        border-right: none;
+    }
+
+    .page-section h2.section-heading {
+        font-size: 1.5rem;
+    }
+
+    h4 {
+        font-size: 1.5rem;
+    }
+
+    section {
+        padding: 30px !important;
+    }
+
+    section#trick > div.container > div.row > div.col-md-4 {
+        margin-bottom: 40px !important;
+    }
+
+    section#rules ul {
+        padding-left: 0 !important; 
+    }
+
+    h3#regSubheading {
+        font-size: 1rem;
+    }
+
+    .img-org {
+        margin-top: 40px;
+    }
+
+    .org-row1 {
+        margin-bottom: 0 !important;
+    }
+
+    header.masthead {
+        height: 45vh;
+    }
+
+    .logo-img {
+        width: 80%;
+    }
+
+    a#heroButton {
+        margin-bottom: -115px;
+        padding: 10px;
+    }
+
+    .contest-text-right {
+        margin-top: 20px;
+    }
+
+    section#prizes .col , section#prizes .col-sm, section#comp-trick .col-sm {
+        margin-bottom: 30px;
+    }
+
+    section#prizes .col:last-child {
+        margin-top: 0;
+    }
+
+    section#prizes span {
+        font-size: 16px;
+    }
+
+    section#demos .card, section#comp-demos .card {
+        margin: 10px !important;
+    }
+
+    section#demos, section#comp-demos {
+        padding: 0 !important;
+    }
+
+    section#demos .card-body, section#comp-demos .card-body {
+        padding: 5px !important;
+    }
+
+    section#comp-demos div.container:last-child > div.row > div.col-md-4 {
+        margin-bottom: 20px;
+    }
+
+    section#comp-demos div.container:last-child > div.row > div.col-md-4:first-child {
+        margin-top: 10px;
+    }
+
+    section#results div.row > div.col-md-4, section#comp-trick div.container:first-child div.row > div.col-md-4:nth-child(4), section#comp-trick div.container:first-child div.row > div.col-md-4:last-child {
+        margin-top: 20px;
+    }
+
+    section#comp-trick div.container:first-child > div.row > div.col-lg:nth-child(1), section#comp-trick div.container:first-child > div.row > div.col-lg:nth-child(2) {
+        margin-bottom: 20px;
+    }
+
+    section#comp-trick .card {
+        text-align: left;
+    }
+
+    .modal-content img {
+        width: 100%;
+        height: 100%;
+    }
+    
+}

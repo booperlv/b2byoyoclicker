@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="Clicker for yoyo scoring"/>
+        <meta name="author" content="Back2Basics" />
+        <title>Back2Basics YoYo Challenge PH</title>
+        <meta property="og:url"                content="https://b2basicsyoyoph.github.io/Back2Basics-YoYo-Challenge-PH2/" />
+        <meta property="og:type"               content="website" />
+        <meta property="og:title"              content="Back2Basics YoYo Challenge PH" />
+        <meta property="og:description"        content="Clicker for yoyo scoring"/>
+        <meta property="og:image"              content="https://b2basicsyoyoph.github.io/Back2Basics-YoYo-Challenge-PH2/assets/img/header-bg.jpg" />
+
+        <link rel="icon" type="image/x-icon" href="assets/img/favicon.png" />
+        <!-- Font Awesome icons (free version)-->
+        <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
+        <!-- Google fonts-->
+        <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
+        <link href="https://fonts.googleapis.com/css?family=Roboto+Slab:400,100,300,700" rel="stylesheet" type="text/css" />
+        <!-- Core theme CSS (includes Bootstrap)-->
+        <link href="css/styles.css" rel="stylesheet" />
+        <!-- Custom theme CSS -->
+        <link href="css/custom.css" rel="stylesheet" />
+        <!-- Clicker theme CSS -->
+        <link href="css/clicker.css" rel="stylesheet" />
+    </head>
+    <body>
+        
+        <input type="file" id="UploadFile" />
+        
+        <input id="InputFile" placeholder="Input Youtube Link" />
+        <input type="button" id="InputFileSubmit" value="Submit"/>
+        
+        <iframe src="" id="VideoSource" frameborder="0"></iframe>
+
+        <input type="button" id="AddOne" value="+">
+        <input type="button" id="MinusOne" value="-">
+
+        <p id="PositiveClicks">0</p>
+        <p id="NegativeClicks">0</p>
+
+        <input id="NameForSave" placeholder="Player Name">
+        <input type="button" id="SaveScore" value="Save to List">
+        <ul id="PlayerList">
+
+        </ul>
+
+
+        <!--Javascript Sources-->
+        <script src="js/clicker.js"></script>
+    </body>
+</html>
