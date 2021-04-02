@@ -1,5 +1,5 @@
-
 //Add Events for Video Upload
+
 const videoUpload = (event) => {
     let files = event.target.files;
     let vidsrc = document.getElementById("VideoSource");
@@ -15,9 +15,53 @@ const videoUpload = (event) => {
 };
 document.getElementById("UploadFile").addEventListener("change", videoUpload);
 
-const videoInput = () => {
+
+
+//Add Events and Functions for Youtube Video Embed
+
+const formatLink = key => {return "https://youtube.com/embed/" + key;};
+
+const transformYoutubeLinks = link => {
+  if (!link) return link;
+
+  const linkreg = /(?:)<a([^>]+)>(.+?)<\/a>/g;
+  const fullreg = /(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)([^& \n<]+)(?:[^ \n<]+)?/g;
+  const regex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([^& \n<]+)(?:[^ \n<]+)?/g;
+
+  let embedLink = link;  
+
+  // get all the matches for youtube links using the first regex
+  const match = link.match(fullreg);
+  if (match && match.length > 0) {
+    // get all links and put in placeholders
+    const matchlinks = link.match(linkreg);
+    if (matchlinks && matchlinks.length > 0) {
+      for (let i=0; i < matchlinks.length; i++) {
+        embedLink = embedLink.replace(matchlinks[i], "#placeholder" + i + "#");
+      }
+    }
+
+    // now go through the matches one by one
+    for (let i=0; i < match.length; i++) {
+      // get the key out of the match using the second regex
+      let matchParts = match[i].split(regex);
+      // replace the full match with the embedded youtube code
+      embedLink = embedLink.replace(match[i], formatLink(matchParts[1]));
+    }
+
+    // ok now put our links back where the placeholders were.
+    if (matchlinks && matchlinks.length > 0) {
+      for (let i=0; i < matchlinks.length; i++) {
+        embedLink = embedLink.replace("#placeholder" + i + "#", matchlinks[i]);
+      }
+    }
+  }
+  return embedLink;
+};
+
+const videoInput = link => {
     let vidsrc = document.getElementById("VideoSource");
-    let inputValue = document.getElementById("InputFile").value;
+    let inputValue = link;
     let xhr = new XMLHttpRequest();
     xhr.open('GET', 'clicker.html');
 
@@ -27,9 +71,15 @@ const videoInput = () => {
     };
     xhr.send(null);
 };
-document.getElementById("InputFileSubmit").addEventListener("click", videoInput);
+document.getElementById("InputFileSubmit").addEventListener("click", function() {
+    let youtubeInput = transformYoutubeLinks(document.getElementById("InputFile").value);
+    videoInput(youtubeInput);
+});
+
+
 
 //Add Events for Click Counts
+
 var positiveCount=0;
 const addClick = () => {
     let positive = document.getElementById("PositiveClicks");
