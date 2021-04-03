@@ -30,10 +30,8 @@ const transformYoutubeLinks = link => {
 
   let embedLink = link;  
 
-  // get all the matches for youtube links using the first regex
   const match = link.match(fullreg);
   if (match && match.length > 0) {
-    // get all links and put in placeholders
     const matchlinks = link.match(linkreg);
     if (matchlinks && matchlinks.length > 0) {
       for (let i=0; i < matchlinks.length; i++) {
@@ -41,11 +39,8 @@ const transformYoutubeLinks = link => {
       }
     }
 
-    // now go through the matches one by one
     for (let i=0; i < match.length; i++) {
-      // get the key out of the match using the second regex
       let matchParts = match[i].split(regex);
-      // replace the full match with the embedded youtube code
       embedLink = embedLink.replace(match[i], formatLink(matchParts[1]));
     }
 
