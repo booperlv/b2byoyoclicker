@@ -1,21 +1,21 @@
 //Add Events for Video Upload
 
-const videoUpload = (event) => {
+const videoFrame = document.getElementById('VideoFrame'); 
+const videoUpload = (event, videoTarget) => {
     let files = event.target.files;
-    let vidsrc = document.getElementById("VideoSource");
     let filesurl = URL.createObjectURL(files[0]);
     let xhttp = new XMLHttpRequest();
     xhttp.open('GET', 'clicker.html');
 
     xhttp.onload = function () {
-        vidsrc.src = "";
-        vidsrc.src = filesurl;
+        videoTarget.src = "";
+        videoTarget.src = filesurl;
     };
     xhttp.send(null);
 };
-document.getElementById("UploadFile").addEventListener("change", videoUpload);
-
-
+document.getElementById("UploadFile").addEventListener("change", function() {
+	videoUpload(event, videoFrame)
+});
 
 //Add Events and Functions for Youtube Video Embed
 
@@ -54,64 +54,83 @@ const transformYoutubeLinks = link => {
   return embedLink;
 };
 
-const videoInput = link => {
-    let vidsrc = document.getElementById("VideoSource");
+const videoInput = (link, videoTarget) => {
     let inputValue = link;
     let xhr = new XMLHttpRequest();
     xhr.open('GET', 'clicker.html');
 
     xhr.onload = function () {
-        vidsrc.src = "";
-        vidsrc.src = inputValue;
+        videoTarget.src = "";
+        videoTarget.src = inputValue;
     };
     xhr.send(null);
 };
 document.getElementById("InputFileSubmit").addEventListener("click", function() {
     let youtubeInput = transformYoutubeLinks(document.getElementById("InputFile").value);
-    videoInput(youtubeInput);
+    videoInput(youtubeInput, videoFrame);
 });
+
+
+
+
+
+
+
+
+
+//CHANGE STUFF HERE
+
+
+
+
+
+
 
 
 
 //Add Events for Click Counts
 
-var positiveCount=0;
-const addClick = () => {
-    let positive = document.getElementById("PositiveClicks");
+const addClick = (positive, positiveCount) => {
     positiveCount += 1;
     positive.innerHTML = `+${positiveCount}`;
 };
-var negativeCount=0;
-const minusClick = () => {
-    let negative = document.getElementById("NegativeClicks");
+const minusClick = (negative, negativeCount) => {
     negativeCount -= 1;
     negative.innerHTML = negativeCount;
 };
-document.getElementById("AddOne").addEventListener("click", addClick);
-document.getElementById("MinusOne").addEventListener("click", minusClick);
-
-
 
 //Add Name+Score to List
 
 class listEntry {
-    constructor(name, score, negative, positive) {
-        this.name = name;
+	constructor(playername, judgearray, sumpositive, sumnegative, rearrangescore){
+		this.playername = playername;
+		this.judgearray = judgearray;
+		this.sumpositive = sumpositive;
+		this.sumnegative = sumnegative;
+		this.rearrangescore = rearrangescore;
+	}
+}
+
+class judgeEntry {
+    constructor(judgename, negative, positive) {
+        this.judgename = judgename;
         this.negative = negative;
         this.positive = positive;
-        this.score = score;
     }
 }
+var judgeArray = [];
+
 var listArray = [];
 
-const sortListArray = () => {
-    listArray.sort( (a, b) => { return b.score-a.score;} );
+const sortArrayDescrending = (array) => {
+    array.sort( (a, b) => { return b.score-a.score;} );
 };
 
-const listArrayToHTML = () => {
-    var parentDir = document.getElementById("PlayerList");
-    parentDir.innerHTML = '';
-    for (let entry of listArray) {
+//const 
+
+const arrayToHTML = (listDir, liArray) => {
+    listDir.innerHTML = '';
+    for (let entry of liArray) {
         let nameLi = document.createElement("li");
         let scoreSpanPositive = document.createElement("span");
         let scoreSpanNegative = document.createElement("span");
@@ -129,7 +148,7 @@ const listArrayToHTML = () => {
 const resetHTML = () => {
     document.getElementById('UploadFile').value = null;
     document.getElementById('InputFile').value = "";
-    document.getElementById('VideoSource').src = "";
+    document.getElementById('VideoFrame').src = "";
     document.getElementById('PositiveClicks').innerHTML = 0;
     document.getElementById('NegativeClicks').innerHTML = 0;
     negativeCount = 0;
@@ -151,7 +170,3 @@ const appendDataToList = name => {
     listArrayToHTML();
     resetHTML();
 };
-let playerName = document.getElementById("NameForSave");
-document.getElementById("SaveScore").addEventListener("click", () => {
-    appendDataToList(playerName.value);
-});
