@@ -82,14 +82,6 @@ document.getElementById("InputFileSubmit").addEventListener("click", function() 
 
 //Menu Functions, Creating Judge 
 
-class judgeEntry {
-    constructor(judgename, negative, positive) {
-        this.judgename = judgename;
-        this.negative = negative;
-        this.positive = positive;
-    }
-}
-
 //Create Judge Name Inputs in Menu based on NumberOfJudges
 const handleJudgeNumber = numberofjudges => {
 	const judgenamediv=document.getElementById('JudgeNames');
@@ -127,7 +119,6 @@ const collectJudgeNames = () => {
 	}
 }
 
-//createJudgeClicker Functions, possibly using an external value
 
 //Create Judge Clickers based on NumberOfJudges and JudgeNames
 const createJudgeClickers = (numberofjudges, judgenames) => {
@@ -199,10 +190,42 @@ class listEntry {
 	}
 }
 
-var judgeArray = [];
+class judgeEntry {
+    constructor(judgename, negative, positive) {
+        this.judgename = judgename;
+        this.negative = negative;
+        this.positive = positive;
+    }
+}
 
-var listArray = [];
+//Place Judge Data into an Object following judgeEntry, add each entry to an array
+const collectAllJudgeData = () => {
+	const maindiv = document.getElementById('JudgeClickerDir');
+	var judgearray = [];
+	for (let currentdiv=0; currentdiv < maindiv.children.length; currentdiv++) {
+		let currentjudgediv = maindiv.children[currentdiv];
+		let judgedataobject = new judgeEntry();
+		
+		let pvalues = currentjudgediv.getElementsByTagName("p");
+		judgedataobject.judgename = currentjudgediv.id;
+		judgedataobject.positive = pvalues[0].children[0].innerHTML;
+		judgedataobject.negative = pvalues[1].children[0].innerHTML;
 
-const sortArrayDescrending = (array) => {
+		judgearray.unshift(judgedataobject);
+	}
+	return judgearray;	
+}
+
+const getAllJudgeScore = judgearray => {
+	var temparray = [];
+	judgearray.forEach(function(judgeobject){
+		let judgesum = judgeobject.positive - judgeobject.negative;
+		temparray.push(judgesum)
+	})
+	let addedscores=temparray.reduce((a, b) => a + b, 0)
+	return addedscores/judgearray.length
+}
+
+const sortArrayDescrending = array => {
     array.sort( (a, b) => { return b.score-a.score;} );
 };
