@@ -90,17 +90,15 @@ class judgeEntry {
     }
 }
 
+//Create Judge Name Inputs in Menu based on NumberOfJudges
 const handleJudgeNumber = numberofjudges => {
 	const judgenamediv=document.getElementById('JudgeNames');
 	judgenamediv.innerHTML = "";
 	for (let currentjudge=0; currentjudge < numberofjudges; currentjudge++) {
-		let judgediv = document.createElement("div");
 		let judgeinput = document.createElement("input");
 
-		judgediv.setAttribute("id","judgediv"+currentjudge);
 		judgeinput.setAttribute("id", "judgeinput"+currentjudge);
-		judgediv.appendChild(judgeinput);
-		judgenamediv.appendChild(judgediv);
+		judgenamediv.appendChild(judgeinput);
 	}
 }
 //Instantly Create Judge Names On Input
@@ -110,14 +108,18 @@ document.getElementById('NumberOfJudges').addEventListener('input', function() {
 })
 
 
-//Collect Judge Names and Place in Array to be returned only ONCE
+//Collect Judge Names and Place in Array
 const collectJudgeNames = () => {
 	const judgeinputdiv = document.getElementById('JudgeNames');
 	let JudgeNames = [];
 	if (judgeinputdiv.children) {
-		for (childelementindex=0; childelementindex<judgeinputdiv.childElementCount; childelementindex++) {
-			let childelement = judgeinputdiv.children[childelementindex];
-			JudgeNames.push(childelement.firstElementChild.id)
+		for (childelementindex=0; childelementindex<judgeinputdiv.childNodes.length; childelementindex++) {
+			let childelement = judgeinputdiv.childNodes[childelementindex];
+			if (childelement.value) {
+				JudgeNames.push(childelement.value)
+			} else {
+				JudgeNames.push(childelement.id)
+			}
 		}
 		return JudgeNames;
 	} else {
@@ -132,32 +134,44 @@ const createJudgeClickers = (numberofjudges, judgenames) => {
 	const judgeclickerdiv=document.getElementById('JudgeClickerDir');
 
 	//Define Functions for the clickers
-	function addClicker() {
-		this.previousSibling.value += 1
-	}
-	function minusClicker() {
-		this.previousSibling.value -= 1
+	function coreClicker(display) {
+		let displayvalue = Number(display.innerHTML);
+		display.innerHTML = displayvalue + 1
 	}
 
 	for (let currentclicker=0; currentclicker < numberofjudges; currentclicker++) {
 
 		let clickerdiv = document.createElement('div');
-		
-		let positivedisplay = document.createElement('p');
+	
+		let positivedisplay = document.createElement('span');
+		let positivesign = document.createElement('p');
 		let positivebutton = document.createElement('button');
-		positivebutton.addEventListener('click', addClicker);
+		positivebutton.addEventListener('click', function(){
+			coreClicker(positivedisplay)
+		});
+		positivesign.innerHTML = "+"
+		positivedisplay.innerHTML = "0"
+		positivebutton.innerHTML = "+"
+		positivesign.appendChild(positivedisplay);
 
-		let negativedisplay = document.createElement('p');
+		let negativedisplay = document.createElement('span');
+		let negativesign = document.createElement('p');
 		let negativebutton = document.createElement('button');
-		negativebutton.addEventListener('click', minusClicker);
+		negativebutton.addEventListener('click', function() {
+			coreClicker(negativedisplay);
+		})
+		negativesign.innerHTML = "-"
+		negativedisplay.innerHTML = "0"
+		negativebutton.innerHTML = "-"
+		negativesign.appendChild(negativedisplay)
 
 		if (judgenames) {
 			clickerdiv.setAttribute("id", judgenames[currentclicker]);
 		}
-		clickerdiv.appendChild(positivedisplay);
+		clickerdiv.appendChild(positivesign);
 		clickerdiv.appendChild(positivebutton);
 
-		clickerdiv.appendChild(negativedisplay);
+		clickerdiv.appendChild(negativesign);
 		clickerdiv.appendChild(negativebutton);
 
 		judgeclickerdiv.appendChild(clickerdiv);
