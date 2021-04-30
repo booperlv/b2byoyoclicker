@@ -130,32 +130,6 @@ const collectJudgeNames = () => {
 		return;
 	}
 }
-//Collect Judge Input Keys to Add clicks
-class JudgeKeysClass {
-	constructor(id, positive, negative){
-		this.id = id;
-		this.positive=positive;
-		this.negative=negative;
-	}
-}
-const collectJudgeKeys = () => {
-	const judgeinputdiv = document.getElementById('JudgeKeys').getElementsByTagName('div');
-	let judgeKeys = [];
-	if (judgeinputdiv) {
-		for (let childelementindex = 0; childelementindex < judgeinputdiv.length; childelementindex++) {
-			let childelements = judgeinputdiv[childelementindex];
-			let judgekeyobject = new JudgeKeysClass();
-			judgekeyobject.id = childelements.id;
-			judgekeyobject.positive = childelements.children[0].value;
-			judgekeyobject.negative = childelements.children[1].value;
-			judgeKeys.push(judgekeyobject);
-		}
-		return judgeKeys;
-	} else {
-		return;
-	}
-}
-
 //Create Judge Clickers based on NumberOfJudges and JudgeNames
 const createJudgeClickers = (numberofjudges) => {
 	const judgeclickerdiv=document.getElementById('JudgeClickerDir');
@@ -215,6 +189,53 @@ document.getElementById('GenerateJudgeClickers').addEventListener('click', funct
 	createJudgeClickers(numberofjudges);
 })
 
+
+
+
+//KeyBind Handling
+
+
+
+
+
+//Collect Judge Input Keys to Add clicks
+class JudgeKeysClass {
+	constructor(id, positive, negative){
+		this.id = id;
+		this.positive=positive;
+		this.negative=negative;
+	}
+	remap(remappos, remapneg) {
+		this.positive=remappos;
+		this.negative=remapneg;
+	}
+}
+const collectJudgeKeys = (id) => {
+	const judgeinputdiv = document.getElementById('JudgeKeys').getElementsByTagName('div');
+	let judgeKeys = [];
+	if (judgeinputdiv) {
+		for (let childelementindex = 0; childelementindex < judgeinputdiv.length; childelementindex++) {
+			let childelements = judgeinputdiv[childelementindex];
+			let judgekeyobject = new JudgeKeysClass();
+			judgekeyobject.id = id;
+			judgekeyobject.positive = childelements.children[0].value;
+			judgekeyobject.negative = childelements.children[1].value;
+			judgeKeys.push(judgekeyobject);
+		}
+		return judgeKeys;
+	} else {
+		return;
+	}
+}
+
+//Map the Collect KeyPress object to the DOM
+const KeyPressToBind = KeyObject => {
+	document.addEventListener('keydown', function(event) {
+		if (event.key = KeyObject.positive) {
+
+		}
+	})
+}
 
 
 
@@ -386,5 +407,4 @@ document.getElementById('SaveScore').addEventListener("click", function(){
 	let object = newPlayerListObject(collectAllJudgeData());
 	newPlayerListEntryHTML(object);
 })
-
 
