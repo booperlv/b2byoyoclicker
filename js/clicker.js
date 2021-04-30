@@ -28,7 +28,7 @@ const transformYoutubeLinks = link => {
   const fullreg = /(https?:\/\/)?(www\.)?(youtube\.com\/watch\?v=|youtu\.be\/)([^& \n<]+)(?:[^ \n<]+)?/g;
   const regex = /(?:https?:\/\/)?(?:www\.)?(?:youtube\.com\/watch\?v=|youtu\.be\/)([^& \n<]+)(?:[^ \n<]+)?/g;
 
-  let embedLink = link;  
+  let embedLink = link; 
 
   const match = link.match(fullreg);
   if (match && match.length > 0) {
@@ -85,11 +85,24 @@ document.getElementById("InputFileSubmit").addEventListener("click", function() 
 //Create Judge Name Inputs in Menu based on NumberOfJudges
 const handleJudgeNumber = numberofjudges => {
 	const judgenamediv=document.getElementById('JudgeNames');
+	const judgekeydiv=document.getElementById('JudgeKeys');
 	judgenamediv.innerHTML = "";
 	for (let currentjudge=0; currentjudge < numberofjudges; currentjudge++) {
 		let judgeinput = document.createElement("input");
 
 		judgeinput.setAttribute("id", "judgeinput"+currentjudge);
+
+		let keydiv = document.createElement("div");
+		let judgepositive = document.createElement("input");
+		let judgenegative = document.createElement("input");
+
+		keydiv.setAttribute("id", "judgekeydiv"+currentjudge);
+		judgepositive.setAttribute("class", "judgepositive"+currentjudge)
+		judgenegative.setAttribute("id", "judgenegative"+currentjudge);
+
+		keydiv.appendChild(judgepositive);
+		keydiv.appendChild(judgenegative);
+		judgekeydiv.appendChild(keydiv);
 		judgenamediv.appendChild(judgeinput);
 	}
 }
@@ -98,20 +111,46 @@ document.getElementById('NumberOfJudges').addEventListener('input', function() {
 	let numberofjudges = this.value;
 	handleJudgeNumber(numberofjudges);
 })
+
 //Collect Judge Names and Place in Array
 const collectJudgeNames = () => {
 	const judgeinputdiv = document.getElementById('JudgeNames');
 	let JudgeNames = [];
 	if (judgeinputdiv.children) {
-		for (childelementindex=0; childelementindex<judgeinputdiv.childNodes.length; childelementindex++) {
-			let childelement = judgeinputdiv.childNodes[childelementindex];
+		for (let childelementindex=0; childelementindex<judgeinputdiv.children.length; childelementindex++) {
+			let childelement = judgeinputdiv.children[childelementindex];
 			if (childelement.value) {
-				JudgeNames.push(childelement.value)
+				JudgeNames.push(childelement.value);
 			} else {
-				JudgeNames.push(childelement.id)
-			}
+				JudgeNames.push(childelement.id);
+			} 
 		}
 		return JudgeNames;
+	} else {
+		return;
+	}
+}
+//Collect Judge Input Keys to Add clicks
+class JudgeKeysClass {
+	constructor(id, positive, negative){
+		this.id = id;
+		this.positive=positive;
+		this.negative=negative;
+	}
+}
+const collectJudgeKeys = () => {
+	const judgeinputdiv = document.getElementById('JudgeKeys').getElementsByTagName('div');
+	let judgeKeys = [];
+	if (judgeinputdiv) {
+		for (let childelementindex = 0; childelementindex < judgeinputdiv.length; childelementindex++) {
+			let childelements = judgeinputdiv[childelementindex];
+			let judgekeyobject = new JudgeKeysClass();
+			judgekeyobject.id = childelements.id;
+			judgekeyobject.positive = childelements.children[0].value;
+			judgekeyobject.negative = childelements.children[1].value;
+			judgeKeys.push(judgekeyobject);
+		}
+		return judgeKeys;
 	} else {
 		return;
 	}
@@ -120,6 +159,7 @@ const collectJudgeNames = () => {
 //Create Judge Clickers based on NumberOfJudges and JudgeNames
 const createJudgeClickers = (numberofjudges) => {
 	const judgeclickerdiv=document.getElementById('JudgeClickerDir');
+	judgeclickerdiv.innerHTML = "";
 	const judgenames = collectJudgeNames();
 
 	//Define Functions for the clickers
@@ -179,7 +219,7 @@ document.getElementById('GenerateJudgeClickers').addEventListener('click', funct
 
 
 
-//Player List and Scores
+//Player List JudgeData & Scores
 
 
 
@@ -206,9 +246,9 @@ const collectAllJudgeData = () => {
 		judgedataobject.positive = pvalues[0].children[0].innerHTML;
 		judgedataobject.negative = pvalues[1].children[0].innerHTML;
 
-		judgearray.unshift(judgedataobject);
+		judgearray.push(judgedataobject);
 	}
-	return judgearray.reverse();	
+	return judgearray;	
 }
 
 //Get sum of all judges scores, flexible class
@@ -245,7 +285,12 @@ const getAllJudgeSum = judgearray => {
 }
 
 
-//Create List Entry
+
+
+//Create List Entry that extends judgeData and Scores
+
+
+
 
 class listEntry {
 	constructor(playername, judgearray, sumpositive, sumnegative, sumobject){
@@ -279,6 +324,14 @@ const sortChildrenToDescend = () => {
 
 //Function that accepts newplayerlistobject as a parameter and generates html content based on it.
 
+//Set Value Of Clicker Span to 0
+const resetScores = () => {
+	const clickerdir = document.getElementById('JudgeClickerDir');
+	for (let currentindex = 0; currentindex < clickerdir.getElementsByTagName("p").length; currentindex++) {
+		let currentspan = clickerdir.getElementsByTagName("p")[currentindex].firstElementChild;
+		currentspan.innerHTML = 0;
+	}	
+}
 const newPlayerListEntryHTML = listobject => {
 	//Element Creation for a list entry, will output in respective order
 	const listdiv = document.getElementById('PlayerList')
@@ -299,6 +352,7 @@ const newPlayerListEntryHTML = listobject => {
 			perjudgeinfo.style.display = "none";
 		}
 	})
+	perjudgeinfo.style.display = "none";
 	//Set the data-sum attribute for sorting
 	playerdiv.dataset.sum = listobject.sumobject.getSum();
 
@@ -325,11 +379,12 @@ const newPlayerListEntryHTML = listobject => {
 
 	listdiv.appendChild(playerdiv);
 	sortChildrenToDescend();
+
+	resetScores();
 }
 document.getElementById('SaveScore').addEventListener("click", function(){
 	let object = newPlayerListObject(collectAllJudgeData());
 	newPlayerListEntryHTML(object);
 })
-
 
 
