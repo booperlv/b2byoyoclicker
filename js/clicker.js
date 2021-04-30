@@ -130,8 +130,39 @@ const collectJudgeNames = () => {
 		return;
 	}
 }
+//Collect Judge Input Keys to Add clicks
+class JudgeKeysClass {
+	constructor(id, positive, negative){
+		this.id = id;
+		this.positive=positive;
+		this.negative=negative;
+	}
+	remap(remappos, remapneg) {
+		this.positive=remappos;
+		this.negative=remapneg;
+	}
+}
+const collectJudgeKeys = () => {
+	const judgeinputdiv = document.getElementById('JudgeKeys').getElementsByTagName('div');
+	let judgeKeys = [];
+	if (judgeinputdiv) {
+		for (let childelementindex = 0; childelementindex < judgeinputdiv.length; childelementindex++) {
+			let childelements = judgeinputdiv[childelementindex];
+			let judgekeyobject = new JudgeKeysClass();
+			judgekeyobject.id = this.id;
+			judgekeyobject.positive = childelements.children[0].value;
+			judgekeyobject.negative = childelements.children[1].value;
+			judgeKeys.push(judgekeyobject);
+		}
+		return judgeKeys;
+	} else {
+		return;
+	}
+}
+
+
 //Create Judge Clickers based on NumberOfJudges and JudgeNames
-const createJudgeClickers = (numberofjudges) => {
+const createJudgeClickers = (numberofjudges, keyobject) => {
 	const judgeclickerdiv=document.getElementById('JudgeClickerDir');
 	judgeclickerdiv.innerHTML = "";
 	const judgenames = collectJudgeNames();
@@ -141,10 +172,16 @@ const createJudgeClickers = (numberofjudges) => {
 		let displayvalue = Number(display.innerHTML);
 		display.innerHTML = displayvalue + 1
 	}
+	var positivearr = [];
+	var negativearr = [];
+	keyobject.forEach(function(currentitem){
+		positivearr.push(currentitem.positive);
+		negativearr.push(currentitem.negative);
+	})
 
-	//Loop the same amount as the number of judges, 
-	for (let currentclicker=0; currentclicker < numberofjudges; currentclicker++) {
-
+	var eventKeyHandle;
+	//Loop the same amount as the number of judges,
+	for (let currentclicker=0;currentclicker < numberofjudges; currentclicker++) {
 		let clickerdiv = document.createElement('div');
 	
 		let positivedisplay = document.createElement('span');
@@ -156,6 +193,7 @@ const createJudgeClickers = (numberofjudges) => {
 		positivesign.innerHTML = "+"
 		positivedisplay.innerHTML = "0"
 		positivebutton.innerHTML = "+"
+		positivebutton.setAttribute('id','positivebutton'+currentclicker)
 		positivesign.appendChild(positivedisplay);
 
 		let negativedisplay = document.createElement('span');
@@ -167,7 +205,55 @@ const createJudgeClickers = (numberofjudges) => {
 		negativesign.innerHTML = "-"
 		negativedisplay.innerHTML = "0"
 		negativebutton.innerHTML = "-"
+		negativebutton.setAttribute('id','negativebutton'+currentclicker)
 		negativesign.appendChild(negativedisplay)
+
+		//Set The EventListener That uses the ID of the buttons as declared above as a reference
+		eventKeyHandle = (event) => {
+			let currentcharpos = positivearr[currentclicker]
+			if (currentcharpos == event.key) {
+				document.getElementById('positivebutton'+currentclicker).click();
+				return;
+			}
+			else {
+				
+			}
+			let currentcharneg = negativearr[currentclicker]
+			if (currentcharneg == event.key) {
+				document.getElementById('negativebutton'+currentclicker).click();
+				return;
+			}
+			else {
+				
+			}
+		}
+		document.addEventListener('keypress', eventKeyHandle);
+
+		//keyobject.forEach(function(currentobject){
+		//	addEvent(document, "keypress", function (e) {
+		//	    if (e.key == currentobject.positive) {
+		//			positivebutton.click();
+		//			console.log('one success sa positive!')
+		//		} if (e.key == currentobject.negative) {
+		//			negativebutton.click();
+		//			console.log('one success sa negative!')
+		//		} else {
+		//			console.log(e.key)
+		//			console.log(currentobject)
+		//			console.log('error on keyhandling: key not recognized');
+		//		}
+		//	});
+		//	
+		//	function addEvent(element, eventName, callback) {
+		//	    if (element.addEventListener) {
+		//	        element.addEventListener(eventName, callback, false);
+		//	    } else if (element.attachEvent) {
+		//	        element.attachEvent("on" + eventName, callback);
+		//	    } else {
+		//	        element["on" + eventName] = callback;
+		//	    }
+		//	}
+		//})
 
 		//Set ID using index, for true uniqueness - Harvest ClassName for the actual displayed name.
 		clickerdiv.setAttribute("id", "judgeclicker" + currentclicker);
@@ -182,60 +268,13 @@ const createJudgeClickers = (numberofjudges) => {
 		judgeclickerdiv.appendChild(clickerdiv);
 
 	}
+
 };
 // Generate Clickers Using Last Two Functions
 document.getElementById('GenerateJudgeClickers').addEventListener('click', function() {
 	let numberofjudges = document.getElementById('NumberOfJudges').value;
-	createJudgeClickers(numberofjudges);
+	createJudgeClickers(numberofjudges, collectJudgeKeys());
 })
-
-
-
-
-//KeyBind Handling
-
-
-
-
-
-//Collect Judge Input Keys to Add clicks
-class JudgeKeysClass {
-	constructor(id, positive, negative){
-		this.id = id;
-		this.positive=positive;
-		this.negative=negative;
-	}
-	remap(remappos, remapneg) {
-		this.positive=remappos;
-		this.negative=remapneg;
-	}
-}
-const collectJudgeKeys = (id) => {
-	const judgeinputdiv = document.getElementById('JudgeKeys').getElementsByTagName('div');
-	let judgeKeys = [];
-	if (judgeinputdiv) {
-		for (let childelementindex = 0; childelementindex < judgeinputdiv.length; childelementindex++) {
-			let childelements = judgeinputdiv[childelementindex];
-			let judgekeyobject = new JudgeKeysClass();
-			judgekeyobject.id = id;
-			judgekeyobject.positive = childelements.children[0].value;
-			judgekeyobject.negative = childelements.children[1].value;
-			judgeKeys.push(judgekeyobject);
-		}
-		return judgeKeys;
-	} else {
-		return;
-	}
-}
-
-//Map the Collect KeyPress object to the DOM
-const KeyPressToBind = KeyObject => {
-	document.addEventListener('keydown', function(event) {
-		if (event.key = KeyObject.positive) {
-
-		}
-	})
-}
 
 
 
