@@ -84,6 +84,17 @@ document.getElementById("InputFileSubmit").addEventListener("click", function() 
 
 //Create Judge Name Inputs in Menu based on NumberOfJudges
 const handleJudgeNumber = numberofjudges => {
+	/*
+	Created Structure is as follows:
+	For Every Judge,
+		<JudgeNames>
+			<input> Input for the name of the indexed judge </input>
+		</JudgeNames>
+		<JudgeKeys>
+			<input> Positive Key Keybind </input>
+			<input> Negative Key Keybind </input>
+		</JudgeKeys>
+	*/
 	const judgenamediv=document.getElementById('JudgeNames');
 	const judgekeydiv=document.getElementById('JudgeKeys');
 	judgenamediv.innerHTML = "";
@@ -161,8 +172,34 @@ const collectJudgeKeys = () => {
 }
 
 
+
+
+
+//Create Judge Clickers
+
+
+
+
+
 //Create Judge Clickers based on NumberOfJudges and JudgeNames
 const createJudgeClickers = (numberofjudges, keyobject) => {
+	/*
+	Created Structure is as follows:
+	For Every Judge
+		<div>
+			<p>
+				Positive Sign "+"
+				<span> Positive Clicks Display </span>
+			</p>
+			<button> Button to Add increase value of ^, gets clicked according to key binding </button>
+
+			<p>
+				Negative Sign "-"
+				<span> Negative Clicks Display </span>
+			</p>
+			<button> Button to Add, increase value of ^, gets clicked according to key binding </button>
+		</div>
+	*/
 	const judgeclickerdiv=document.getElementById('JudgeClickerDir');
 	judgeclickerdiv.innerHTML = "";
 	const judgenames = collectJudgeNames();
@@ -228,33 +265,7 @@ const createJudgeClickers = (numberofjudges, keyobject) => {
 			}
 		}
 		document.addEventListener('keypress', eventKeyHandle);
-
-		//keyobject.forEach(function(currentobject){
-		//	addEvent(document, "keypress", function (e) {
-		//	    if (e.key == currentobject.positive) {
-		//			positivebutton.click();
-		//			console.log('one success sa positive!')
-		//		} if (e.key == currentobject.negative) {
-		//			negativebutton.click();
-		//			console.log('one success sa negative!')
-		//		} else {
-		//			console.log(e.key)
-		//			console.log(currentobject)
-		//			console.log('error on keyhandling: key not recognized');
-		//		}
-		//	});
-		//	
-		//	function addEvent(element, eventName, callback) {
-		//	    if (element.addEventListener) {
-		//	        element.addEventListener(eventName, callback, false);
-		//	    } else if (element.attachEvent) {
-		//	        element.attachEvent("on" + eventName, callback);
-		//	    } else {
-		//	        element["on" + eventName] = callback;
-		//	    }
-		//	}
-		//})
-
+	
 		//Set ID using index, for true uniqueness - Harvest ClassName for the actual displayed name.
 		clickerdiv.setAttribute("id", "judgeclicker" + currentclicker);
 		clickerdiv.setAttribute("class", judgenames[currentclicker])
@@ -268,7 +279,6 @@ const createJudgeClickers = (numberofjudges, keyobject) => {
 		judgeclickerdiv.appendChild(clickerdiv);
 
 	}
-
 };
 // Generate Clickers Using Last Two Functions
 document.getElementById('GenerateJudgeClickers').addEventListener('click', function() {
@@ -393,6 +403,26 @@ const resetScores = () => {
 	}	
 }
 const newPlayerListEntryHTML = listobject => {
+	/*
+	Created Structure is as follows:
+	<li>
+		<p>
+			Name Of Player
+			<span> Summary Scores </span>
+		</p>
+		<button> Toggle Visibility of span below </button>
+		<span>
+			for every judge and every judegobject in listobject ->
+			<div>
+				<p> 
+					Judge Name
+					<span> Per Judge Score </span>
+				</p>
+			</div>
+		</span>
+	</li>
+	*/
+
 	//Element Creation for a list entry, will output in respective order
 	const listdiv = document.getElementById('PlayerList')
 	let playerdiv = document.createElement("li");
