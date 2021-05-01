@@ -98,6 +98,7 @@ const handleJudgeNumber = numberofjudges => {
 	const judgenamediv=document.getElementById('JudgeNames');
 	const judgekeydiv=document.getElementById('JudgeKeys');
 	judgenamediv.innerHTML = "";
+	judgekeydiv.innerHTML = "";
 	for (let currentjudge=0; currentjudge < numberofjudges; currentjudge++) {
 		let judgeinput = document.createElement("input");
 
