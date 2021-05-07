@@ -27,7 +27,7 @@ body {
 }
  //Arrows
  .arrow {
-  border: solid black;
+  border: solid #fed136;
   border-width: 0 3px 3px 0;
   display: inline-block;
   padding: 3px;
@@ -49,22 +49,6 @@ body {
   -webkit-transform: rotate(45deg);
 }
 
-
-//Actual Content
-
-
-#ColumnsContent {
-  display: flex;
-  width: 100vw;
-  height: 100vh;
-  padding: 0;
-  margin: 0;
-
-  .column {
-    height: 100vh;
-    padding: 0.5rem;
-  }
-}
 .gutter {
     background-color: #ffb900;
     margin: 0;
@@ -81,6 +65,33 @@ body {
     cursor: row-resize;
 }
 
+//Actual Content
+
+* input, * button {
+    outline: none;
+    background: none;
+    color: #fed136; 
+    border: 0.125rem solid #7a7a7a ;
+    border-radius: 0.25rem;
+}
+
+* input:focus, * button:focus {
+    border: 0.15rem solid white;
+}
+
+#ColumnsContent {
+  display: flex;
+  width: 100vw;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+
+  .column {
+    height: 100vh;
+    padding: 0.5rem;
+  }
+}
+
 #ConfigureMenu {
   display: flex;
   flex-direction: column;
@@ -88,6 +99,7 @@ body {
   input {
       width: 100%;
   }
+
 }
 
 #MiddlePortion {
@@ -97,9 +109,14 @@ body {
   flex-direction: column;
   
   #MediaDisplay {
+    height: 100%;
     padding: 0.5rem;
     display: flex;
     flex-direction: column;
+
+    #VideoFrame {
+	height: 100%;
+    }
   }
   
   #JudgeClickerDir {
@@ -128,7 +145,7 @@ body {
   }
 
 }
-  
+
 #Player {
   display: flex;
   flex-direction: column;
@@ -139,8 +156,12 @@ body {
   }
 
   ul {
+    margin: 0;
+    padding: 0;
     list-style-type: none;
     li {
+	margin: 0;
+	padding: 0;
     }
   }
 

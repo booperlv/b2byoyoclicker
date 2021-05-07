@@ -1,7 +1,3 @@
-const outputDocumentPX = () => {
-    return document.documentElement.offsetWidth;
-}
-
 Split(['#ConfigureMenu', '#MiddlePortion', '#Player'], {
     elementStyle: function (dimension, size) { 
         return {'width': + size + 'vw'};

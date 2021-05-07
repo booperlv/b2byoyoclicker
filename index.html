@@ -22,16 +22,22 @@
 	        <br>
 	        <label for="JudgeNames">Names of the Judges? (Left to Right)</label>
 	        <div id="JudgeNames"></div>
-	        <label for="JudgeKeys"> Define the KeyBindings! </label>
+	        <label for="JudgeKeys"> Define the Key Binds! </label>
 	        <div id="JudgeKeys"></div>
-	        <button id="GenerateJudgeClickers">Generate Judge Clickers</button>
+		<button id="GenerateJudgeClickers"> Generate Judge Clickers </button>
+
+		<div id="BottomMenu">
+		    <button id="ContainerToggleKey">Toggle Key Mode</button>
+		    <input type="checkbox" id="ToggleKeyMode" name="ToggleKeyMode" style="display:none;" />
+		</div>
 	    </div>
 
             <div id="MiddlePortion" class="column" >
             
                 <div id="MediaDisplay">
                     <div id="MediaSettings">
-                        <input type="file" id="UploadFile" />
+			<input type="button" id="loadFileXml" value="Upload a File" onclick="document.getElementById('UploadFile').click();" />
+                        <input type="file" style="display:none;" id="UploadFile" />
                 
                         <input id="InputFile" placeholder="Input Youtube Link" />
                         <input type="button" id="InputFileSubmit" value="Submit"/>
@@ -54,6 +60,7 @@
 	</div>
 
         <!--Javascript Sources-->
+	<script src="js/elementevents.js"></script>
 	<script src="js/styling.js"></script>
 	<script src="js/videohandling.js"></script>
 	<script src="js/menuhandling.js"></script>

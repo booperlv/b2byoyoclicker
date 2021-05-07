@@ -136,9 +136,11 @@ const createJudgeClickers = (numberofjudges, keyobject) => {
 		negativearr.push(currentitem.negative);
 	})
 
-	var eventKeyHandle;
+	let eventKeyHandle;
+	let keymode = document.getElementById('ToggleKeyMode'); 
 	//Loop the same amount as the number of judges,
 	for (let currentclicker=0;currentclicker < numberofjudges; currentclicker++) {
+
 		let clickerdiv = document.createElement('div');
 		let signcontainer = document.createElement('div');
 		let buttoncontainer = document.createElement('div');
@@ -172,7 +174,7 @@ const createJudgeClickers = (numberofjudges, keyobject) => {
 		//Set The EventListener That uses the ID of the buttons as declared above as a reference
 		eventKeyHandle = (event) => {
 			let currentcharpos = positivearr[currentclicker]
-			if (currentcharpos == event.key) {
+			if (currentcharpos == event.key && keymode.checked) {
 				document.getElementById('positivebutton'+currentclicker).click();
 				return;
 			}
@@ -180,7 +182,7 @@ const createJudgeClickers = (numberofjudges, keyobject) => {
 				
 			}
 			let currentcharneg = negativearr[currentclicker]
-			if (currentcharneg == event.key) {
+			if (currentcharneg == event.key && keymode.checked) {
 				document.getElementById('negativebutton'+currentclicker).click();
 				return;
 			}
