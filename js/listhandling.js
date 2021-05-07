@@ -136,6 +136,7 @@ const newPlayerListEntryHTML = listobject => {
 	let summaryscore = document.createElement("span");
 	let togglebutton = document.createElement("button");
 	let perjudgeinfo = document.createElement("span");
+	let buttonicon = document.createElement("i");
 
 	//Create For Loop that uses the judge array parameter	
 	let playername = listobject.playername;
@@ -148,6 +149,8 @@ const newPlayerListEntryHTML = listobject => {
 			perjudgeinfo.style.display = "none";
 		}
 	})
+	buttonicon.setAttribute('class', 'arrow down')
+
 	perjudgeinfo.style.display = "none";
 	//Set the data-sum attribute for sorting
 	playerdiv.dataset.sum = listobject.sumobject.getSum();
@@ -165,6 +168,7 @@ const newPlayerListEntryHTML = listobject => {
 	})
 
 	//Start Placing the Elements in their respective dom positions
+	togglebutton.appendChild(buttonicon)
 	playerdiv.setAttribute("id", "player" + listdiv.children.length)
 	summaryscore.innerHTML = `${listobject.sumobject.plusDivideByLength(judgearray.length)} ${listobject.sumobject.minusDivideByLength(judgearray.length)}`;
 	nameparagraph.innerHTML = playername;
