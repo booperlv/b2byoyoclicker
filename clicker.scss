@@ -1,3 +1,8 @@
+@font-face {
+font-family: "iosevka";
+src: url("assets/fonts/iosevka.ttf") format("ttf"),
+}
+
 html {
   box-sizing: border-box;
 }
@@ -8,60 +13,100 @@ html {
   box-sizing: inherit;
 }
 
+* {
+  font-family: iosevka, verdana, monospace;
+}
+
 body {
+  width: 100%;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  background-color: #343a40;
+  color: white;
+}
+
+#ColumnsContent {
+  display: flex;
   width: 100vw;
   height: 100vh;
-  padding: 0px;
+  padding: 0;
   margin: 0;
-  display: inline-flex;
-  justify-content: center;
+
+  .column {
+    height: 100vh;
+    padding: 0.5rem;
+  }
+}
+.gutter {
+    background-color: #ffb900;
+    margin: 0;
+    padding: 0;
+    background-repeat: no-repeat;
+    background-position: 50%;
+}
+
+.gutter.gutter-horizontal {
+    cursor: col-resize;
+}
+
+.gutter.gutter-vertical {
+    cursor: row-resize;
 }
 
 #ConfigureMenu {
-  width: 10vw;
-  height: 100vh;
   display: flex;
   flex-direction: column;
-  border: 1px solid black;
+
+  input {
+      width: 100%;
+  }
 }
 
 #MiddlePortion {
+  padding: 0;
+  margin: 0;
   display: inline-flex;
   flex-direction: column;
-
+  
   #MediaDisplay {
-    width: 80vw;
-    height: 90vh;
+    padding: 0.5rem;
     display: flex;
     flex-direction: column;
-    border: 1px solid black;
-
-    #MediaSettings {
-      height: auto;
-    }
-
-    #VideoFrame {
-      height: 100%;
-    }
   }
-
+  
   #JudgeClickerDir {
-    width: 80vw;
-    height: 10vh;
-    display: flex;
+    display: inline-flex;
     flex-direction: row;
-    border: 1px solid black;
-  }
-}
+    justify-content: space-evenly;
+    align-content: space-around;
 
+    div {
+
+      .ClickerSignContainer {
+	p {
+	  width: 50%;
+	  display: inline-flex;
+	  text-align: center;
+	}
+      }
+      .ClickerButtonContainer {
+	button {
+	  width: 50%;
+	  text-align: center;
+	}
+      }
+
+    }
+  }
+
+}
+  
 #Player {
-  width: 10vw;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   flex-wrap: true;
-  border: 1px solid black;
-
+ 
   input {
     width: 100%;
   }

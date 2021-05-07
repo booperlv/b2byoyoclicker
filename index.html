@@ -2,7 +2,7 @@
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<meta name="viewport" content="width=device-width, initial-scale=1" />
         <meta name="description" content="Clicker for yoyo scoring"/>
         <meta name="author" content="Back2Basics" />
         <title>Back2Basics YoYo Challenge PH</title>
@@ -10,53 +10,55 @@
         <link rel="icon" type="image/x-icon" href="assets/img/favicon.png" />
         <!-- Font Awesome icons (free version)-->
         <script src="https://use.fontawesome.com/releases/v5.15.1/js/all.js" crossorigin="anonymous"></script>
-        
+	<!-- Split.JS for resizing -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/split.js/1.3.5/split.min.js"></script>
+	<!-- Pure CSS Stylesheet -->
         <link href="clicker.css" rel="stylesheet" />
     </head>
     <body>
-       
-		<div id="ConfigureMenu">
-			<label for="NumberOfJudges">How Many Judges?</label>
-			<input name="NumberOfJudges" id="NumberOfJudges" type="number">
-			<br>
-			<label for="JudgeNames">Names of the Judges? (Left to Right)</label>
-			<div id="JudgeNames">
+	<div id="ColumnsContent">
 
-			</div>
-            <label for="JudgeKeys"> Define the KeyBindings! </label>
-			<div id="JudgeKeys">
+	    <div id="ConfigureMenu" class="column" >
+	        <label for="NumberOfJudges">How Many Judges?</label>
+	        <input name="NumberOfJudges" id="NumberOfJudges" type="number">
+	        <br>
+	        <label for="JudgeNames">Names of the Judges? (Left to Right)</label>
+	        <div id="JudgeNames"></div>
+	        <label for="JudgeKeys"> Define the KeyBindings! </label>
+	        <div id="JudgeKeys"></div>
+	        <button id="GenerateJudgeClickers">Generate Judge Clickers</button>
+	    </div>
 
-			</div>
-			<button id="GenerateJudgeClickers">Generate Judge Clickers</button>
-		</div>
-
-        <div id="MiddlePortion">
-        
-            <div id="MediaDisplay">
-                <div id="MediaSettings">
-                    <input type="file" id="UploadFile" />
+            <div id="MiddlePortion" class="column" >
             
-                    <input id="InputFile" placeholder="Input Youtube Link" />
-                    <input type="button" id="InputFileSubmit" value="Submit"/>
- 
-                </div>
+                <div id="MediaDisplay">
+                    <div id="MediaSettings">
+                        <input type="file" id="UploadFile" />
                 
-                <iframe src="" id="VideoFrame" frameborder="0"></iframe>
+                        <input id="InputFile" placeholder="Input Youtube Link" />
+                        <input type="button" id="InputFileSubmit" value="Submit"/>
+                    </div>
+                    
+                    <iframe src="" id="VideoFrame" frameborder="0"></iframe>
+                </div>
 
+                <div id="JudgeClickerDir"></div>
+            </div>
+            
+            <div id="Player" class="column">
+                <div id="PlayerMenu">
+                    <input id="NameForSave" placeholder="Player Name">
+                    <input type="button" id="SaveScore" value="Save to List">
+                </div>
+                <ul id="PlayerList"></ul> 
             </div>
 
-            <div id="JudgeClickerDir"></div>
-        </div>
-        
-        <div id="Player">
-            <ul id="PlayerList"></ul> 
-            <div id="PlayerMenu">
-                <input id="NameForSave" placeholder="Player Name">
-                <input type="button" id="SaveScore" value="Save to List">
-            </div>
-        </div>
+	</div>
 
         <!--Javascript Sources-->
-        <script src="js/clicker.js"></script>
+	<script src="js/styling.js"></script>
+	<script src="js/videohandling.js"></script>
+	<script src="js/menuhandling.js"></script>
+	<script src="js/listhandling.js"></script>
     </body>
 </html>

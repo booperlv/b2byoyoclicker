@@ -1,54 +1,100 @@
+@font-face {
+  font-family: "iosevka";
+  src: url("assets/fonts/iosevka.ttf") format("ttf");
+}
 html {
-  box-sizing: border-box; }
+  box-sizing: border-box;
+}
 
 *,
 *:before,
 *:after {
-  box-sizing: inherit; }
+  box-sizing: inherit;
+}
+
+* {
+  font-family: iosevka, verdana, monospace;
+}
 
 body {
+  width: 100%;
+  overflow: hidden;
+  padding: 0;
+  margin: 0;
+  background-color: #343a40;
+  color: white;
+}
+
+#ColumnsContent {
+  display: flex;
   width: 100vw;
   height: 100vh;
-  padding: 0px;
+  padding: 0;
   margin: 0;
-  display: inline-flex;
-  justify-content: center; }
+}
+#ColumnsContent .column {
+  height: 100vh;
+  padding: 0.5rem;
+}
+
+.gutter {
+  background-color: #ffb900;
+  margin: 0;
+  padding: 0;
+  background-repeat: no-repeat;
+  background-position: 50%;
+}
+
+.gutter.gutter-horizontal {
+  cursor: col-resize;
+}
+
+.gutter.gutter-vertical {
+  cursor: row-resize;
+}
 
 #ConfigureMenu {
-  width: 10vw;
-  height: 100vh;
   display: flex;
   flex-direction: column;
-  border: 1px solid black; }
+}
+#ConfigureMenu input {
+  width: 100%;
+}
 
 #MiddlePortion {
+  padding: 0;
+  margin: 0;
   display: inline-flex;
-  flex-direction: column; }
-  #MiddlePortion #MediaDisplay {
-    width: 80vw;
-    height: 90vh;
-    display: flex;
-    flex-direction: column;
-    border: 1px solid black; }
-    #MiddlePortion #MediaDisplay #MediaSettings {
-      height: auto; }
-    #MiddlePortion #MediaDisplay #VideoFrame {
-      height: 100%; }
-  #MiddlePortion #JudgeClickerDir {
-    width: 80vw;
-    height: 10vh;
-    display: flex;
-    flex-direction: row;
-    border: 1px solid black; }
+  flex-direction: column;
+}
+#MiddlePortion #MediaDisplay {
+  padding: 0.5rem;
+  display: flex;
+  flex-direction: column;
+}
+#MiddlePortion #JudgeClickerDir {
+  display: inline-flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-content: space-around;
+}
+#MiddlePortion #JudgeClickerDir div .ClickerSignContainer p {
+  width: 50%;
+  display: inline-flex;
+  text-align: center;
+}
+#MiddlePortion #JudgeClickerDir div .ClickerButtonContainer button {
+  width: 50%;
+  text-align: center;
+}
 
 #Player {
-  width: 10vw;
-  height: 100vh;
   display: flex;
   flex-direction: column;
   flex-wrap: true;
-  border: 1px solid black; }
-  #Player input {
-    width: 100%; }
+}
+#Player input {
+  width: 100%;
+}
 
 /*# sourceMappingURL=clicker.css.map */
