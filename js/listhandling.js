@@ -1,3 +1,4 @@
+
 class judgeEntry {
     constructor(judgename, negative, positive) {
         this.judgename = judgename;
@@ -31,10 +32,12 @@ class AllJudgeSum {
 		this.negative = negative;
 	}
 	plusDivideByLength(length) {
-		return `+${this.positive/length}`
+		let output = this.positive/length;
+		return `+${output.toFixed(2)}`
 	}
 	minusDivideByLength(length) {
-		return `-${this.negative/length}`
+		let output = this.negative/length;
+		return `-${output.toFixed(2)}`
 	}
 	getSum() {
 		return this.positive - this.negative;
@@ -49,11 +52,11 @@ const getAllJudgeSum = judgearray => {
 		temparraynegative.push(Number(judgeobject.negative));
 	})
 	//Add all values of array to each other
-	let positivescore=temparraypositive.reduce((a, b) => a + b, 0)
-	let negativescore=temparraynegative.reduce((a, b) => a + b, 0)
+	let positivescore=temparraypositive.reduce((a, b) => a + b, 0);
+	let negativescore=temparraynegative.reduce((a, b) => a + b, 0);
 	const sumobject = new AllJudgeSum();
-	sumobject.positive = positivescore.toFixed(2);
-	sumobject.negative = negativescore.toFixed(2);
+	sumobject.positive = positivescore;
+	sumobject.negative = negativescore;
 	return sumobject;
 }
 
