@@ -96,7 +96,7 @@ body {
   display: flex;
   flex-direction: column;
 }
-#ConfigureMenu input {
+#ConfigureMenu input, #ConfigureMenu button {
   width: 100%;
 }
 
