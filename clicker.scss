@@ -1,52 +1,52 @@
 @font-face {
-font-family: "iosevka";
-src: url("assets/fonts/iosevka.ttf") format("ttf"),
+    font-family: 'iosevka';
+    src: url('assets/fonts/iosevka.ttf') format('ttf');
 }
 
 html {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 *,
 *:before,
 *:after {
-  box-sizing: inherit;
+    box-sizing: inherit;
 }
 
 * {
-  font-family: iosevka, verdana, monospace;
+    font-family: iosevka, verdana, monospace;
 }
 
 body {
-  width: 100%;
-  overflow: hidden;
-  padding: 0;
-  margin: 0;
-  background-color: #343a40;
-  color: white;
+    width: 100%;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    background-color: #343a40;
+    color: white;
 }
- //Arrows
- .arrow {
-  border: solid #fed136;
-  border-width: 0 3px 3px 0;
-  display: inline-block;
-  padding: 3px;
+//Arrows
+.arrow {
+    border: solid #fed136;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
 }
 .right {
-  transform: rotate(-45deg);
-  -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
 }
 .left {
-  transform: rotate(135deg);
-  -webkit-transform: rotate(135deg);
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
 }
 .up {
-  transform: rotate(-135deg);
-  -webkit-transform: rotate(-135deg);
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
 }
 .down {
-  transform: rotate(45deg);
-  -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
 }
 
 .gutter {
@@ -67,101 +67,110 @@ body {
 
 //Actual Content
 
-* input, * button {
+* input,
+* button {
     outline: none;
-    background: none;
-    color: #fed136; 
-    border: 0.125rem solid #7a7a7a ;
+    background-color: rgba(255, 255, 255, 0);
+    color: #f8f9fa;
+    border: 0.125rem solid #7a7a7a;
     border-radius: 0.25rem;
 }
 
-* input:focus, * button:focus {
+* input:focus,
+* button:focus {
     border: 0.15rem solid white;
+    background-color: #6c757d;
 }
 
 #ColumnsContent {
-  display: flex;
-  width: 100vw;
-  height: 100vh;
-  padding: 0;
-  margin: 0;
-
-  .column {
+    display: flex;
+    width: 100vw;
     height: 100vh;
-    padding: 0.5rem;
-  }
+    padding: 0;
+    margin: 0;
+
+    .column {
+        height: 100vh;
+        padding: 0.5rem;
+    }
 }
 
 #ConfigureMenu {
-  display: flex;
-  flex-direction: column;
-
-  * {
-    width: 100%;
-  }
-}
-
-#MiddlePortion {
-  padding: 0;
-  margin: 0;
-  display: inline-flex;
-  flex-direction: column;
-  
-  #MediaDisplay {
-    height: 100%;
-    padding: 0.5rem;
     display: flex;
     flex-direction: column;
 
-    #VideoFrame {
-	height: 100%;
+    * {
+        width: 100%;
     }
-  }
-  
-  #JudgeClickerDir {
+
+    #JudgeKeys {
+        div {
+            input {
+                display: inline-flex;
+                flex-direction: row;
+                width: 50%;
+            }
+        }
+    }
+}
+
+#MiddlePortion {
+    padding: 0;
+    margin: 0;
     display: inline-flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    align-content: space-around;
+    flex-direction: column;
 
-    div {
+    #MediaDisplay {
+        height: 100%;
+        padding: 0.5rem;
+        display: flex;
+        flex-direction: column;
 
-      .ClickerSignContainer {
-	p {
-	  width: 50%;
-	  display: inline-flex;
-	  text-align: center;
-	}
-      }
-      .ClickerButtonContainer {
-	button {
-	  width: 50%;
-	  text-align: center;
-	}
-      }
-
+        #VideoFrame {
+            height: 100%;
+        }
     }
-  }
 
+    #JudgeClickerDir {
+        display: inline-flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+        align-content: space-around;
+
+        div {
+            .ClickerSignContainer {
+                p {
+                    width: 50%;
+                    display: inline-flex;
+                    text-align: center;
+                }
+            }
+            .ClickerButtonContainer {
+                button {
+                    width: 50%;
+                    text-align: center;
+                }
+            }
+        }
+    }
 }
 
 #Player {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: true;
- 
-  input {
-    width: 100%;
-  }
+    display: flex;
+    flex-direction: column;
+    flex-wrap: true;
 
-  ul {
-    margin: 0;
-    padding: 0;
-    list-style-type: none;
-    li {
-	margin: 0;
-	padding: 0;
+    input {
+        width: 100%;
     }
-  }
 
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style-type: none;
+        li {
+            margin: 0;
+            padding: 0;
+        }
+    }
 }

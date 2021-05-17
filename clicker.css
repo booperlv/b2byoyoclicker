@@ -68,16 +68,19 @@ body {
   cursor: row-resize;
 }
 
-* input, * button {
+* input,
+* button {
   outline: none;
-  background: none;
-  color: #fed136;
+  background-color: rgba(255, 255, 255, 0);
+  color: #f8f9fa;
   border: 0.125rem solid #7a7a7a;
   border-radius: 0.25rem;
 }
 
-* input:focus, * button:focus {
+* input:focus,
+* button:focus {
   border: 0.15rem solid white;
+  background-color: #6c757d;
 }
 
 #ColumnsContent {
@@ -96,8 +99,13 @@ body {
   display: flex;
   flex-direction: column;
 }
-#ConfigureMenu input, #ConfigureMenu button {
+#ConfigureMenu * {
   width: 100%;
+}
+#ConfigureMenu #JudgeKeys div input {
+  display: inline-flex;
+  flex-direction: row;
+  width: 50%;
 }
 
 #MiddlePortion {
