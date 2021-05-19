@@ -112,6 +112,10 @@ body {
             }
         }
     }
+
+    #BottomMenu {
+        margin-top: auto;
+    }
 }
 
 #MiddlePortion {
@@ -171,6 +175,22 @@ body {
         li {
             margin: 0;
             padding: 0;
+
+            p {
+                display: block;
+                width: 100%;
+                background-color: #6c757d;
+                text-align: center;
+            }
+
+            span {
+                display: inline-flex;
+                border: 1px solid #6c757d;
+                background-color: black;
+            }
+            button i {
+                display: inline-flex;
+            }
         }
     }
 }

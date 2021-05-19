@@ -107,6 +107,9 @@ body {
   flex-direction: row;
   width: 50%;
 }
+#ConfigureMenu #BottomMenu {
+  margin-top: auto;
+}
 
 #MiddlePortion {
   padding: 0;
@@ -155,6 +158,20 @@ body {
 #Player ul li {
   margin: 0;
   padding: 0;
+}
+#Player ul li p {
+  display: block;
+  width: 100%;
+  background-color: #6c757d;
+  text-align: center;
+}
+#Player ul li span {
+  display: inline-flex;
+  border: 1px solid #6c757d;
+  background-color: black;
+}
+#Player ul li button i {
+  display: inline-flex;
 }
 
 /*# sourceMappingURL=clicker.css.map */

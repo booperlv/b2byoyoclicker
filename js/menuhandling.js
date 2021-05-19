@@ -24,20 +24,20 @@ const handleJudgeNumber = (numberofjudges) => {
         judgeinput.setAttribute('id', 'judgeinput' + currentjudge);
 
         let keydiv = document.createElement('div');
+        let judgename = document.createElement('label');
+        let linebreak = document.createElement('br');
         let judgepositive = document.createElement('input');
         let judgenegative = document.createElement('input');
 
+        judgename.innerHTML = `Judge ${currentjudge}`;
+
         keydiv.setAttribute('id', 'judgekeydiv' + currentjudge);
         judgepositive.setAttribute('class', 'judgepositive');
-        judgepositive.setAttribute(
-            'placeholder',
-            `Judge ${currentjudge} positive key`
-        );
+        judgepositive.setAttribute('placeholder', 'Positive');
         judgenegative.setAttribute('class', 'judgenegative');
-        judgenegative.setAttribute(
-            'placeholder',
-            `Judge ${currentjudge} negative key`
-        );
+        judgenegative.setAttribute('placeholder', 'Negative');
+        keydiv.appendChild(judgename);
+        keydiv.appendChild(linebreak);
         keydiv.appendChild(judgepositive);
         keydiv.appendChild(judgenegative);
         judgekeydiv.appendChild(keydiv);
@@ -60,10 +60,12 @@ const collectJudgeNames = () => {
     if (judgeinputdiv.children) {
         for (
             let childelementindex = 0;
-            childelementindex < judgeinputdiv.children.length;
+            childelementindex < judgeinputdiv.getElementsByTagName('input').length;
             childelementindex++
         ) {
-            let childelement = judgeinputdiv.children[childelementindex];
+            let childelement = judgeinputdiv.getElementsByTagName('input')[childelementindex];
+            console.log(childelement)
+            console.log(childelement.value)
             if (childelement.value) {
                 JudgeNames.push(childelement.value);
             } else {
@@ -101,8 +103,12 @@ const collectJudgeKeys = () => {
             let childelements = judgeinputdiv[childelementindex];
             let judgekeyobject = new JudgeKeysClass();
             judgekeyobject.id = this.id;
-            judgekeyobject.positive = childelements.children[0].value;
-            judgekeyobject.negative = childelements.children[1].value;
+            judgekeyobject.positive = childelements.getElementsByTagName(
+                'input'
+            )[0].value;
+            judgekeyobject.negative = childelements.getElementsByTagName(
+                'input'
+            )[1].value;
             judgeKeys.push(judgekeyobject);
         }
         return judgeKeys;

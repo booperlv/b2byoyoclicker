@@ -119,7 +119,7 @@ const newPlayerListEntryHTML = (listobject) => {
 			<span> Summary Scores </span>
 		</p>
 		<button> Toggle Visibility of span below </button>
-		<span>
+		<div>
 			for every judge and every judegobject in listobject ->
 			<div>
 				<p> 
@@ -127,7 +127,7 @@ const newPlayerListEntryHTML = (listobject) => {
 					<span> Per Judge Score </span>
 				</p>
 			</div>
-		</span>
+		</div>
 	</li>
     */
 
@@ -137,7 +137,7 @@ const newPlayerListEntryHTML = (listobject) => {
     let nameparagraph = document.createElement('p');
     let summaryscore = document.createElement('span');
     let togglebutton = document.createElement('button');
-    let perjudgeinfo = document.createElement('span');
+    let perjudgeinfo = document.createElement('div');
     let buttonicon = document.createElement('i');
 
     //Create For Loop that uses the judge array parameter
