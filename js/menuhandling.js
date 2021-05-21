@@ -64,8 +64,6 @@ const collectJudgeNames = () => {
             childelementindex++
         ) {
             let childelement = judgeinputdiv.getElementsByTagName('input')[childelementindex];
-            console.log(childelement)
-            console.log(childelement.value)
             if (childelement.value) {
                 JudgeNames.push(childelement.value);
             } else {
@@ -120,6 +118,7 @@ const collectJudgeKeys = () => {
 //Create Judge Clickers
 
 //Create Judge Clickers based on NumberOfJudges and JudgeNames
+let eventKeyHandle; //Store the event key as a global variable so it can be cleared
 const createJudgeClickers = (numberofjudges, keyobject) => {
     /*
 	Created Structure is as follows:
@@ -157,7 +156,8 @@ const createJudgeClickers = (numberofjudges, keyobject) => {
         negativearr.push(currentitem.negative);
     });
 
-    let eventKeyHandle;
+    //Delete the event on the document first to prevent key activating two events
+    document.removeEventListener('keypress', eventKeyHandle);
     let keymode = document.getElementById('ToggleKeyMode');
     //Loop the same amount as the number of judges,
     for (

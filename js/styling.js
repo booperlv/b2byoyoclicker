@@ -3,10 +3,10 @@ Split(['#ConfigureMenu', '#MiddlePortion', '#Player'], {
         return { width: +size + 'vw' };
     },
     sizes: [10, 80, 10],
-    gutterSize: 3,
+    gutterSize: 0.2,
     gutterStyle: function (dimension, gutterSize) {
         return {
-            'flex-basis': gutterSize + 'px',
+            'flex-basis': gutterSize + 'em',
         };
     },
 });
@@ -18,10 +18,10 @@ Split(['#MediaDisplay', '#JudgeClickerDir'], {
         return { height: +size + '%' };
     },
     sizes: [85, 15],
-    gutterSize: 3,
+    gutterSize: 0.2,
     gutterStyle: function (dimension, gutterSize) {
         return {
-            'flex-basis': gutterSize + 'px',
+            'flex-basis': gutterSize + 'em',
         };
     },
 });

@@ -1,6 +1,10 @@
 @font-face {
-    font-family: 'iosevka';
+    font-family: 'Iosevka';
     src: url('assets/fonts/iosevka.ttf') format('ttf');
+}
+@font-face {
+    font-family: 'Fantasque Sans Mono';
+    src: url('assets/fonts/FantasqueSansMono-Regular.ttf') format('ttf');
 }
 
 html {
@@ -14,7 +18,8 @@ html {
 }
 
 * {
-    font-family: iosevka, verdana, monospace;
+    box-sizing: border-box;
+    font-family: 'Fantasque Sans Mono', Iosevka;
 }
 
 body {
@@ -50,7 +55,7 @@ body {
 }
 
 .gutter {
-    background-color: #ffb900;
+    background-color: #fff;
     margin: 0;
     padding: 0;
     background-repeat: no-repeat;
@@ -67,19 +72,34 @@ body {
 
 //Actual Content
 
-* input,
-* button {
+input {
     outline: none;
     background-color: rgba(255, 255, 255, 0);
     color: #f8f9fa;
     border: 0.125rem solid #7a7a7a;
     border-radius: 0.25rem;
+    height: 1.5em;
+    margin: 0.25em 0;
 }
 
-* input:focus,
-* button:focus {
+input:focus {
     border: 0.15rem solid white;
     background-color: #6c757d;
+}
+
+input[type=button],
+button {
+    outline: none;
+    background-color: #ffb900;
+    color: black;
+    border: 0.125rem solid #ffb900;
+    border-radius: 0.25rem;
+    margin: 0.25em 0;
+}
+input[type=button]:focus,
+button:focus {
+    border: 0.15rem solid black;
+    box-shadow: 0 0 0 0.125em white;
 }
 
 #ColumnsContent {
@@ -103,6 +123,27 @@ body {
         width: 100%;
     }
 
+    #JudgeNames, #JudgeKeys {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        height: 20%;
+        border: 0.15em solid white;
+        border-radius: 0.2em;
+        padding: 0.5rem;
+        overflow: scroll;
+        overflow-x: hidden;
+        -ms-overflow-style: none;  /* Internet Explorer 10+ */
+        scrollbar-width: none;
+    }
+    #JudgeNames::-webkit-scrollbar {
+        display: none;
+    }
+    #JudgeKeys::-webkit-scrollbar {
+        display: none;
+    }
+
     #JudgeKeys {
         div {
             input {
@@ -115,6 +156,9 @@ body {
 
     #BottomMenu {
         margin-top: auto;
+        #ContainerToggleKey {
+            background: none;
+        }
     }
 }
 
@@ -124,9 +168,12 @@ body {
     display: inline-flex;
     flex-direction: column;
 
+    #MediaSettings {
+        height: auto;
+    }
     #MediaDisplay {
+        padding: 0.5em;
         height: 100%;
-        padding: 0.5rem;
         display: flex;
         flex-direction: column;
 
@@ -168,21 +215,27 @@ body {
         width: 100%;
     }
 
-    ul {
+    #PlayerMenu {
+        margin-bottom: 0.25em;
+    }
+
+    ul#PlayerList {
+        border: 0.15em solid white;
+        border-radius: 0.2em;
+        height: 100%;
         margin: 0;
         padding: 0;
         list-style-type: none;
         li {
             margin: 0;
             padding: 0;
-
             p {
-                display: block;
+                margin: 0;
+                padding: 0;
                 width: 100%;
                 background-color: #6c757d;
                 text-align: center;
             }
-
             span {
                 display: inline-flex;
                 border: 1px solid #6c757d;
@@ -193,4 +246,5 @@ body {
             }
         }
     }
+
 }

@@ -6,6 +6,6 @@ document
         if (checkbox.checked) {
             this.style.background = '#6c757d';
         } else {
-            this.style.background = 'none';
+            this.style.background = none; 
         }
     });
