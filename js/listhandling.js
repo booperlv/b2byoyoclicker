@@ -12,16 +12,17 @@ const collectAllJudgeData = () => {
     var judgearray = [];
     for (
         let currentdiv = 0;
-        currentdiv < maindiv.getElementsByTagName('div').length;
+        currentdiv < maindiv.children.length;
         currentdiv++
     ) {
-        let currentjudgediv = maindiv.getElementsByTagName[currentdiv];
+        let currentjudgediv = maindiv.children[currentdiv].getElementsByClassName('ClickerSignContainer')[0];
         let judgedataobject = new judgeEntry();
 
-        let pvalues = currentjudgediv.getElementsByTagName('p');
+        let positivepvalues = currentjudgediv.getElementsByClassName('positivep')[0]
+        let negativepvalues = currentjudgediv.getElementsByClassName('negativep')[0]
         judgedataobject.judgename = currentjudgediv.className;
-        judgedataobject.positive = pvalues[0].getElementsByTagName('span')[0].innerHTML;
-        judgedataobject.negative = pvalues[1].getElementsByTagName('span')[0].innerHTML;
+        judgedataobject.positive = positivepvalues.getElementsByTagName('span')[0].innerHTML;
+        judgedataobject.negative = negativepvalues.getElementsByTagName('span')[0].innerHTML;
 
         judgearray.push(judgedataobject);
     }

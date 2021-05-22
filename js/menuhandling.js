@@ -191,6 +191,7 @@ const createJudgeClickers = (numberofjudges, keyobject) => {
         positivedisplay.innerHTML = '0';
         positivebutton.innerHTML = '+';
         positivebutton.setAttribute('id', 'positivebutton' + currentclicker);
+        positivesign.setAttribute('class', 'positivep')
         positivesign.appendChild(positivedisplay);
 
         let negativedisplay = document.createElement('span');
@@ -203,6 +204,7 @@ const createJudgeClickers = (numberofjudges, keyobject) => {
         negativedisplay.innerHTML = '0';
         negativebutton.innerHTML = '-';
         negativebutton.setAttribute('id', 'negativebutton' + currentclicker);
+        negativesign.setAttribute('class', 'negativep')
         negativesign.appendChild(negativedisplay);
 
         //Set The EventListener That uses the ID of the buttons as declared above as a reference
