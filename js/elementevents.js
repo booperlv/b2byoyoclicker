@@ -4,8 +4,8 @@ document
         let checkbox = document.getElementById('ToggleKeyMode');
         checkbox.click();
         if (checkbox.checked) {
-            this.style.background = '#6c757d';
+            this.style.backgroundColor = '#6c757d';
         } else {
-            this.style.background = none; 
+            this.style.backgroundColor = '#343a40'; 
         }
     });

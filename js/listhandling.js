@@ -116,16 +116,19 @@ const newPlayerListEntryHTML = (listobject) => {
 	<li>
 		<p>
 			Name Of Player
-			<span> Summary Scores </span>
 		</p>
-		<button> Toggle Visibility of span below </button>
+        <div> for inline
+		    <span> Summary Scores </span>
+		    <button> Toggle Visibility of span below </button>
+        </div> for inline
+
 		<div>
 			for every judge and every judegobject in listobject ->
 			<div>
-				<p> 
-					Judge Name
-					<span> Per Judge Score </span>
-				</p>
+			    <p> 
+				    Judge Name
+				    <span> Per Judge Score </span>
+			    </p>
 			</div>
 		</div>
 	</li>
@@ -135,6 +138,7 @@ const newPlayerListEntryHTML = (listobject) => {
     const listdiv = document.getElementById('PlayerList');
     let playerdiv = document.createElement('li');
     let nameparagraph = document.createElement('p');
+    let divinline = document.createElement('div');
     let summaryscore = document.createElement('span');
     let togglebutton = document.createElement('button');
     let perjudgeinfo = document.createElement('div');
@@ -161,11 +165,12 @@ const newPlayerListEntryHTML = (listobject) => {
         let judgediv = document.createElement('div');
         let judgename = document.createElement('p');
         let judgescores = document.createElement('span');
-        judgename.innerHTML = object.judgename;
+        judgename.innerHTML = `${object.judgename}`;
         judgescores.innerHTML = `+${object.positive}  -${object.negative}`;
         judgename.appendChild(judgescores);
         judgediv.appendChild(judgename);
 
+        judgediv.setAttribute('class', 'judgescore')
         perjudgeinfo.appendChild(judgediv);
     });
 
@@ -176,9 +181,14 @@ const newPlayerListEntryHTML = (listobject) => {
         judgearray.length
     )} ${listobject.sumobject.minusDivideByLength(judgearray.length)}`;
     nameparagraph.innerHTML = playername;
+
     playerdiv.appendChild(nameparagraph);
-    playerdiv.appendChild(summaryscore);
-    playerdiv.appendChild(togglebutton);
+
+    divinline.appendChild(summaryscore);
+    divinline.appendChild(togglebutton);
+    divinline.setAttribute('class', 'inlinescores')
+    playerdiv.appendChild(divinline);
+
     playerdiv.appendChild(perjudgeinfo);
 
     listdiv.appendChild(playerdiv);
