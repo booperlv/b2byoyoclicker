@@ -19,9 +19,11 @@ const collectAllJudgeData = () => {
         let judgedataobject = new judgeEntry();
 
         let pvalues = currentjudgediv.getElementsByTagName('p');
+        let positivevalues = currentjudgediv.getElementsByClassName('positivep')
+        let negativevalues = currentjudgediv.getElementsByClassName('negativep')
         judgedataobject.judgename = currentjudgediv.className;
-        judgedataobject.positive = pvalues[0].children[0].innerHTML;
-        judgedataobject.negative = pvalues[1].children[0].innerHTML;
+        judgedataobject.positive = positivevalues[0].children[0].innerHTML;
+        judgedataobject.negative = negativevalues[0].children[0].innerHTML;
 
         judgearray.push(judgedataobject);
     }

@@ -245,22 +245,22 @@ button.allbutton:focus {
                 align-items: center;
             }
             .inlinescores {
-                display: flex;
+                display: inline-flex;
                 flex-direction: row;
+                background-color: #6c757d;
                 span {
                     display: flex;
-                    flex-grow: 100;
                     text-align: center;
                     justify-content: center;
                     align-items: center;
                     background-color: #6c757d;
                 }
                 button {
-                    background-color: #6c757d;
                     height: 100%;
+                    background-color: #6c757d;
+                    margin: 0;
                     border: 0;
                     border-radius: 0;
-                    margin: 0;
                     i {
                         display: inline-flex;
                         background-color: #6c757d;

@@ -228,23 +228,23 @@ button.allbutton:focus {
   align-items: center;
 }
 #Player ul#PlayerList li .inlinescores {
-  display: flex;
+  display: inline-flex;
   flex-direction: row;
+  background-color: #6c757d;
 }
 #Player ul#PlayerList li .inlinescores span {
   display: flex;
-  flex-grow: 100;
   text-align: center;
   justify-content: center;
   align-items: center;
   background-color: #6c757d;
 }
 #Player ul#PlayerList li .inlinescores button {
-  background-color: #6c757d;
   height: 100%;
+  background-color: #6c757d;
+  margin: 0;
   border: 0;
   border-radius: 0;
-  margin: 0;
 }
 #Player ul#PlayerList li .inlinescores button i {
   display: inline-flex;
