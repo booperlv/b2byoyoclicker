@@ -4,11 +4,18 @@ const handleJudgeNumber = (numberofjudges) => {
 	Created Structure is as follows:
 	For Every Judge,
 		<JudgeNames>
+            <label> Index of Judge </label>
 			<input> Input for the name of the indexed judge </input>
 		</JudgeNames>
 		<JudgeKeys>
-			<input> Positive Key Keybind </input>
-			<input> Negative Key Keybind </input>
+            <div>
+                <label> Index of Judge </label>
+                <br>
+                <div> space between flex
+			        <input> Positive Key Keybind </input>
+			        <input> Negative Key Keybind </input>
+                </div>
+            </div>
 		</JudgeKeys>
 	*/
     const judgenamediv = document.getElementById('JudgeNames');
@@ -18,28 +25,31 @@ const handleJudgeNumber = (numberofjudges) => {
     for (let currentjudge = 0; currentjudge < numberofjudges; currentjudge++) {
         let judgeinput = document.createElement('input');
         let judgeinputlabel = document.createElement('label');
-
         judgeinputlabel.setAttribute('for', 'judgeinput' + currentjudge);
         judgeinputlabel.innerHTML = `Judge ${currentjudge}`;
         judgeinput.setAttribute('id', 'judgeinput' + currentjudge);
+        judgeinput.setAttribute('placeholder', 'Name Of Judge')
+        judgeinput.setAttribute('class', 'allinput')
 
         let keydiv = document.createElement('div');
         let judgename = document.createElement('label');
         let linebreak = document.createElement('br');
+        let keycontainerdiv = document.createElement('div');
         let judgepositive = document.createElement('input');
         let judgenegative = document.createElement('input');
 
         judgename.innerHTML = `Judge ${currentjudge}`;
 
         keydiv.setAttribute('id', 'judgekeydiv' + currentjudge);
-        judgepositive.setAttribute('class', 'judgepositive');
+        judgepositive.setAttribute('class', 'judgepositive allinput');
         judgepositive.setAttribute('placeholder', 'Positive');
-        judgenegative.setAttribute('class', 'judgenegative');
+        judgenegative.setAttribute('class', 'judgenegative allinput');
         judgenegative.setAttribute('placeholder', 'Negative');
         keydiv.appendChild(judgename);
         keydiv.appendChild(linebreak);
-        keydiv.appendChild(judgepositive);
-        keydiv.appendChild(judgenegative);
+        keycontainerdiv.appendChild(judgepositive);
+        keycontainerdiv.appendChild(judgenegative);
+        keydiv.appendChild(keycontainerdiv);
         judgekeydiv.appendChild(keydiv);
         judgenamediv.appendChild(judgeinputlabel);
         judgenamediv.appendChild(judgeinput);

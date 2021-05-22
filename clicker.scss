@@ -72,23 +72,20 @@ body {
 
 //Actual Content
 
-input {
+input.allinput {
     outline: none;
-    background-color: #343a40;
-    color: white;
-    border: 0.125rem solid #7a7a7a;
+    border: 0.125rem solid white;
     border-radius: 0.25rem;
     height: 1.5em;
     margin: 0.25em 0;
 }
 
-input:focus {
-    border: 0.15rem solid white;
-    background-color: #6c757d;
+input.allinput:focus {
+    border: 0.15rem solid #7a7a7a;
 }
 
-input[type=button],
-button {
+input[type=button].allbutton,
+button.allbutton {
     outline: none;
     background-color: #ffb900;
     color: black;
@@ -96,8 +93,8 @@ button {
     border-radius: 0.25rem;
     margin: 0.25em 0;
 }
-input[type=button]:focus,
-button:focus {
+input[type=button].allbutton:focus,
+button.allbutton:focus {
     border: 0.15rem solid black;
     box-shadow: 0 0 0 0.125em white;
 }
@@ -146,10 +143,15 @@ button:focus {
 
     #JudgeKeys {
         div {
-            input {
-                display: inline-flex;
-                flex-direction: row;
-                width: 50%;
+            div {
+                display: flex;
+                justify-content: space-between;
+                align-items: space-between;
+                input {
+                    display: inline-flex;
+                    flex-direction: row;
+                    width: 45%;
+                }
             }
         }
     }
@@ -237,6 +239,7 @@ button:focus {
                 width: 100%;
                 height: 1.5em;
                 background-color: #6c757d;
+                color: black;
                 text-align: center;
                 justify-content: center;
                 align-items: center;
@@ -250,15 +253,23 @@ button:focus {
                     text-align: center;
                     justify-content: center;
                     align-items: center;
-                }
-                button i {
-                    display: inline-flex;
-                    background-color: #343a40;
-                    color: white;
+                    background-color: #6c757d;
                 }
                 button {
-                    background-color: #343a40;
-                    border: 0px solid #343a40;
+                    background-color: #6c757d;
+                    height: 100%;
+                    border: 0;
+                    border-radius: 0;
+                    margin: 0;
+                    i {
+                        display: inline-flex;
+                        background-color: #6c757d;
+                        color: white;
+                    }
+                }
+                button:focus {
+                    border: 0;
+                    box-shadow: 0 white;
                 }
             }
             div div.judgescore {

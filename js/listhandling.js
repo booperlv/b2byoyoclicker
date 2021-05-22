@@ -12,16 +12,16 @@ const collectAllJudgeData = () => {
     var judgearray = [];
     for (
         let currentdiv = 0;
-        currentdiv < maindiv.children.length;
+        currentdiv < maindiv.getElementsByTagName('div').length;
         currentdiv++
     ) {
-        let currentjudgediv = maindiv.children[currentdiv];
+        let currentjudgediv = maindiv.getElementsByTagName[currentdiv];
         let judgedataobject = new judgeEntry();
 
         let pvalues = currentjudgediv.getElementsByTagName('p');
         judgedataobject.judgename = currentjudgediv.className;
-        judgedataobject.positive = pvalues[0].children[0].innerHTML;
-        judgedataobject.negative = pvalues[1].children[0].innerHTML;
+        judgedataobject.positive = pvalues[0].getElementsByTagName('span')[0].innerHTML;
+        judgedataobject.negative = pvalues[1].getElementsByTagName('span')[0].innerHTML;
 
         judgearray.push(judgedataobject);
     }
@@ -90,7 +90,7 @@ const newPlayerListObject = (judgearray) => {
 //Sorts the Children of an element based on their "data-sum" attribute in descending order
 const sortChildrenToDescend = () => {
     const parentdiv = document.getElementById('PlayerList');
-    [...parentdiv.children]
+    [...parentdiv.getElementsByTagName('div')]
         .sort((a, b) => b.dataset.sum - a.dataset.sum)
         .forEach((node) => parentdiv.appendChild(node));
 };
@@ -176,7 +176,7 @@ const newPlayerListEntryHTML = (listobject) => {
 
     //Start Placing the Elements in their respective dom positions
     togglebutton.appendChild(buttonicon);
-    playerdiv.setAttribute('id', 'player' + listdiv.children.length);
+    playerdiv.setAttribute('id', 'player' + listdiv.getElementsByTagName('div').length);
     summaryscore.innerHTML = `${listobject.sumobject.plusDivideByLength(
         judgearray.length
     )} ${listobject.sumobject.minusDivideByLength(judgearray.length)}`;

@@ -21,6 +21,7 @@
                     name="NumberOfJudges"
                     id="NumberOfJudges"
                     type="number"
+                    class="allinput"
                 />
                 <br />
                 <label for="JudgeNames"
@@ -29,19 +30,19 @@
                 <div id="JudgeNames"></div>
                 <label for="JudgeKeys"> Define the Key Binds! </label>
                 <div id="JudgeKeys"></div>
-                <button id="GenerateJudgeClickers">
+                <button id="GenerateJudgeClickers" class="allbutton">
                     Generate Judge Clickers
                 </button>
 
                 <div id="BottomMenu">
-                    <button id="ContainerToggleKey">Toggle Key Mode</button>
+                    <button id="ContainerToggleKey" class="allbutton">Toggle Key Mode</button>
                     <input
                         type="checkbox"
                         id="ToggleKeyMode"
                         name="ToggleKeyMode"
                         style="display: none"
                     />
-                    <button id="ContainerToggleVisibility">Toggle Menu</button>
+                    <button id="ContainerToggleVisibility" class="allbutton">Toggle Menu</button>
                     <input
                         type="checkbox"
                         id="ToggleMenu"
@@ -59,6 +60,7 @@
                             id="loadFileXml"
                             value="Upload a File"
                             onclick="document.getElementById('UploadFile').click();"
+                            class="allbutton"
                         />
                         <input
                             type="file"
@@ -69,11 +71,13 @@
                         <input
                             id="InputFile"
                             placeholder="Input Youtube Link"
+                            class="allinput"
                         />
                         <input
                             type="button"
                             id="InputFileSubmit"
                             value="Submit"
+                            class="allbutton"
                         />
                     </div>
 
@@ -85,8 +89,8 @@
 
             <div id="Player" class="column">
                 <div id="PlayerMenu">
-                    <input id="NameForSave" placeholder="Player Name" />
-                    <input type="button" id="SaveScore" value="Save to List" />
+                    <input id="NameForSave" class="allinput" placeholder="Player Name" />
+                    <input type="button" id="SaveScore" class="allbutton" value="Save to List" />
                 </div>
                 <ul id="PlayerList"></ul>
             </div>
