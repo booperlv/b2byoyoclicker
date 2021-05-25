@@ -118,6 +118,7 @@ const newPlayerListEntryHTML = (listobject) => {
 	<li>
 		<p>
 			Name Of Player
+            <button> delete the entire li entry </button>
 		</p>
         <div> for inline
 		    <span> Summary Scores </span>
@@ -140,6 +141,7 @@ const newPlayerListEntryHTML = (listobject) => {
     const listdiv = document.getElementById('PlayerList');
     let playerdiv = document.createElement('li');
     let nameparagraph = document.createElement('p');
+    let deletewholeentry = document.createElement('button');
     let divinline = document.createElement('div');
     let summaryscore = document.createElement('span');
     let togglebutton = document.createElement('button');
@@ -183,6 +185,7 @@ const newPlayerListEntryHTML = (listobject) => {
         judgearray.length
     )} ${listobject.sumobject.minusDivideByLength(judgearray.length)}`;
     nameparagraph.innerHTML = playername;
+    deletewholeentry.innerHTML = "X";
 
     playerdiv.appendChild(nameparagraph);
 

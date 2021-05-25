@@ -162,6 +162,10 @@ button.allbutton:focus {
             background-color: #343a40;
             color: white;
         }
+        #ContainerToggleVisibility {
+            background-color: #343a40;
+            color: white;
+        }
     }
 }
 
@@ -238,14 +242,14 @@ button.allbutton:focus {
                 padding: 0;
                 width: 100%;
                 height: 1.5em;
-                background-color: #6c757d;
+                background-color: #ffb900;
                 color: black;
                 text-align: center;
                 justify-content: center;
                 align-items: center;
             }
             .inlinescores {
-                display: inline-flex;
+                display: flex;
                 flex-direction: row;
                 background-color: #6c757d;
                 span {
@@ -253,6 +257,8 @@ button.allbutton:focus {
                     text-align: center;
                     justify-content: center;
                     align-items: center;
+                    flex-grow: 100;
+                    height: 100%;
                     background-color: #6c757d;
                 }
                 button {
@@ -278,9 +284,10 @@ button.allbutton:focus {
                 align-items: space-evenly;
                 p {
                     padding: 0.5em;
+                    color: white;
+                    background-color: #343a40;
                     span {
                         background-color: white;
-                        border: 0.125em solid white;
                         border-radius: 0.2em;
                         color: black;
                         margin-left: auto;
