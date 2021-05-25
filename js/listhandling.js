@@ -144,13 +144,17 @@ const newPlayerListEntryHTML = (listobject) => {
     //Element Creation for a list entry, will output in respective order
     const listdiv = document.getElementById('PlayerList');
     let playerdiv = document.createElement('li');
+
+    let firstlinediv = document.createElement('div');
     let nameparagraph = document.createElement('p');
-    let deletewholeentry = document.createElement('button');
-    let divinline = document.createElement('div');
+    let deleteplayerdiv = document.createElement('span');
+
+    let secondlinediv = document.createElement('div');
     let summaryscore = document.createElement('span');
     let togglebutton = document.createElement('button');
-    let perjudgeinfo = document.createElement('div');
     let buttonicon = document.createElement('i');
+
+    let perjudgeinfo = document.createElement('div');
 
     //Create For Loop that uses the judge array parameter
     let playername = listobject.playername;
@@ -182,21 +186,31 @@ const newPlayerListEntryHTML = (listobject) => {
         perjudgeinfo.appendChild(judgediv);
     });
 
+    //Create Function for delete whole entry button
+    deleteplayerdiv.addEventListener('click', function() {
+        //Hopefully create a floating prompt that confirms if you really want to delete the entry
+        playerdiv.remove()
+    })
+
     //Start Placing the Elements in their respective dom positions
     togglebutton.appendChild(buttonicon);
     playerdiv.setAttribute('id', 'player' + listdiv.children.length);
+    firstlinediv.setAttribute('class', 'inlinenameandbutton');
+    nameparagraph.innerHTML = playername;
+    deleteplayerdiv.innerHTML = 'X';
+    deleteplayerdiv.setAttribute('class', 'allbutton')
     summaryscore.innerHTML = `${listobject.sumobject.plusDivideByLength(
         judgearray.length
     )} ${listobject.sumobject.minusDivideByLength(judgearray.length)}`;
-    nameparagraph.innerHTML = playername;
-    deletewholeentry.innerHTML = 'X';
 
-    playerdiv.appendChild(nameparagraph);
+    firstlinediv.appendChild(nameparagraph);
+    firstlinediv.appendChild(deleteplayerdiv)
+    playerdiv.appendChild(firstlinediv);
 
-    divinline.appendChild(summaryscore);
-    divinline.appendChild(togglebutton);
-    divinline.setAttribute('class', 'inlinescores');
-    playerdiv.appendChild(divinline);
+    secondlinediv.appendChild(summaryscore);
+    secondlinediv.appendChild(togglebutton);
+    secondlinediv.setAttribute('class', 'inlinescores');
+    playerdiv.appendChild(secondlinediv);
 
     playerdiv.appendChild(perjudgeinfo);
 

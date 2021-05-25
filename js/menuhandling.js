@@ -23,13 +23,15 @@ const handleJudgeNumber = (numberofjudges) => {
     judgenamediv.innerHTML = '';
     judgekeydiv.innerHTML = '';
     for (let currentjudge = 0; currentjudge < numberofjudges; currentjudge++) {
+        let displayedindex = currentjudge + 1
+
         let judgeinput = document.createElement('input');
         let judgeinputlabel = document.createElement('label');
-        judgeinputlabel.setAttribute('for', 'judgeinput' + currentjudge);
-        judgeinputlabel.innerHTML = `Judge ${currentjudge}`;
-        judgeinput.setAttribute('id', 'judgeinput' + currentjudge);
+        judgeinputlabel.innerHTML = `Judge ${displayedindex}`;
+        judgeinput.setAttribute('id', 'Judge' + displayedindex);
         judgeinput.setAttribute('placeholder', 'Name Of Judge');
         judgeinput.setAttribute('class', 'allinput');
+        judgeinputlabel.setAttribute('for', judgeinput.id);
 
         let keydiv = document.createElement('div');
         let judgename = document.createElement('label');
@@ -38,7 +40,7 @@ const handleJudgeNumber = (numberofjudges) => {
         let judgepositive = document.createElement('input');
         let judgenegative = document.createElement('input');
 
-        judgename.innerHTML = `Judge ${currentjudge}`;
+        judgename.innerHTML = `Judge ${displayedindex}`;
 
         keydiv.setAttribute('id', 'judgekeydiv' + currentjudge);
         judgepositive.setAttribute('class', 'judgepositive allinput');
@@ -102,8 +104,7 @@ class JudgeKeysClass {
 }
 const collectJudgeKeys = () => {
     const judgeinputdiv = document
-        .getElementById('JudgeKeys')
-        .getElementsByTagName('div');
+        .querySelectorAll('#JudgeKeys > div');
     let judgeKeys = [];
     if (judgeinputdiv) {
         for (
@@ -114,12 +115,19 @@ const collectJudgeKeys = () => {
             let childelements = judgeinputdiv[childelementindex];
             let judgekeyobject = new JudgeKeysClass();
             judgekeyobject.id = this.id;
-            judgekeyobject.positive = childelements.getElementsByTagName(
-                'input'
-            )[0].value;
-            judgekeyobject.negative = childelements.getElementsByTagName(
-                'input'
-            )[1].value;
+            let inputsinside = childelements.getElementsByTagName('input')
+            //check if positive is not falsy, else make value null
+            if (inputsinside[0].value) {
+                judgekeyobject.positive = inputsinside[0].value
+            } else {
+                judgekeyobject.positive = '';
+            }
+            //check if negative is not falsy, else make value null
+            if (inputsinside[1].value) {
+                judgekeyobject.negative = inputsinside[1].value
+            } else {
+                judgekeyobject.negative = '';
+            }
             judgeKeys.push(judgekeyobject);
         }
         return judgeKeys;
@@ -156,6 +164,7 @@ const createJudgeClickers = (numberofjudges, keyobject) => {
     const judgeclickerdiv = document.getElementById('JudgeClickerDir');
     judgeclickerdiv.innerHTML = '';
     const judgenames = collectJudgeNames();
+    console.log(judgenames)
 
     //Define Functions for the clickers
     function coreClicker(display) {
@@ -168,9 +177,38 @@ const createJudgeClickers = (numberofjudges, keyobject) => {
         positivearr.push(currentitem.positive);
         negativearr.push(currentitem.negative);
     });
+    console.log(`positivearr is ${positivearr}`)
+    console.log(`negativearr is ${negativearr}`)
+    console.log(`keyobject is ${keyobject}`)
 
-    //Delete the event on the document first to prevent key activating two events
+    //Set The EventListener That uses the ID of the buttons as declared above as a reference
+    const eventKeyHandle = (event) => {
+        positivearr.forEach((currentcharpos, index) => {
+            console.log(`currentcharpositive is ${currentcharpos} index is ${index}`)
+            if (currentcharpos == event.key && keymode.checked) {
+                document
+                    .getElementById('positivebutton' + index)
+                    .click();
+                return;
+            } else {
+                return;
+            }
+        })
+        negativearr.forEach((currentcharneg, index) => {
+            console.log(`currentcharnegative is ${currentcharneg} index is ${index}`)
+            if (currentcharneg == event.key && keymode.checked) {
+                document
+                    .getElementById('negativebutton' + index)
+                    .click();
+                return;
+            } else {
+                return
+            }
+        })
+    };
     document.removeEventListener('keypress', eventKeyHandle);
+    document.addEventListener('keypress', eventKeyHandle);
+
     let keymode = document.getElementById('ToggleKeyMode');
     //Loop the same amount as the number of judges,
     for (
@@ -209,27 +247,6 @@ const createJudgeClickers = (numberofjudges, keyobject) => {
         negativebutton.setAttribute('id', 'negativebutton' + currentclicker);
         negativesign.setAttribute('class', 'negativep');
         negativesign.appendChild(negativedisplay);
-
-        //Set The EventListener That uses the ID of the buttons as declared above as a reference
-        eventKeyHandle = (event) => {
-            let currentcharpos = positivearr[currentclicker];
-            if (currentcharpos == event.key && keymode.checked) {
-                document
-                    .getElementById('positivebutton' + currentclicker)
-                    .click();
-                return;
-            } else {
-            }
-            let currentcharneg = negativearr[currentclicker];
-            if (currentcharneg == event.key && keymode.checked) {
-                document
-                    .getElementById('negativebutton' + currentclicker)
-                    .click();
-                return;
-            } else {
-            }
-        };
-        document.addEventListener('keypress', eventKeyHandle);
 
         //Set ID using index, for true uniqueness - Harvest ClassName for the actual displayed name.
         clickerdiv.setAttribute('id', 'judgeclicker' + currentclicker);

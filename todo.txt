@@ -6,13 +6,14 @@ Add exit buttons to each list entry (Player)
 Style Clicker Buttons and Display
 
 Add overflow handling for buttons in listdiv
+Fix styling inside the listdiv (Notably .judgescore)
 
 Set the font sizes properly
 
 Find good font and provide web-safe fallbacks
 
-Integrate some of the images in assets (perhaps convert to webp for compression)
-
 Style labels tags in the menu
 
 Create proper spacing between components in menu
+
+Floating Comfirmation Prompt that is reusable for buttons (y/n)
