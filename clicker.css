@@ -120,7 +120,8 @@ button.allbutton:focus {
 #ConfigureMenu * {
   width: 100%;
 }
-#ConfigureMenu #JudgeNames, #ConfigureMenu #JudgeKeys {
+#ConfigureMenu #JudgeNames,
+#ConfigureMenu #JudgeKeys {
   display: flex;
   flex-direction: column;
   align-items: center;

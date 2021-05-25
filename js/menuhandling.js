@@ -28,8 +28,8 @@ const handleJudgeNumber = (numberofjudges) => {
         judgeinputlabel.setAttribute('for', 'judgeinput' + currentjudge);
         judgeinputlabel.innerHTML = `Judge ${currentjudge}`;
         judgeinput.setAttribute('id', 'judgeinput' + currentjudge);
-        judgeinput.setAttribute('placeholder', 'Name Of Judge')
-        judgeinput.setAttribute('class', 'allinput')
+        judgeinput.setAttribute('placeholder', 'Name Of Judge');
+        judgeinput.setAttribute('class', 'allinput');
 
         let keydiv = document.createElement('div');
         let judgename = document.createElement('label');
@@ -70,10 +70,13 @@ const collectJudgeNames = () => {
     if (judgeinputdiv.children) {
         for (
             let childelementindex = 0;
-            childelementindex < judgeinputdiv.getElementsByTagName('input').length;
+            childelementindex <
+            judgeinputdiv.getElementsByTagName('input').length;
             childelementindex++
         ) {
-            let childelement = judgeinputdiv.getElementsByTagName('input')[childelementindex];
+            let childelement = judgeinputdiv.getElementsByTagName('input')[
+                childelementindex
+            ];
             if (childelement.value) {
                 JudgeNames.push(childelement.value);
             } else {
@@ -191,7 +194,7 @@ const createJudgeClickers = (numberofjudges, keyobject) => {
         positivedisplay.innerHTML = '0';
         positivebutton.innerHTML = '+';
         positivebutton.setAttribute('id', 'positivebutton' + currentclicker);
-        positivesign.setAttribute('class', 'positivep')
+        positivesign.setAttribute('class', 'positivep');
         positivesign.appendChild(positivedisplay);
 
         let negativedisplay = document.createElement('span');
@@ -204,7 +207,7 @@ const createJudgeClickers = (numberofjudges, keyobject) => {
         negativedisplay.innerHTML = '0';
         negativebutton.innerHTML = '-';
         negativebutton.setAttribute('id', 'negativebutton' + currentclicker);
-        negativesign.setAttribute('class', 'negativep')
+        negativesign.setAttribute('class', 'negativep');
         negativesign.appendChild(negativedisplay);
 
         //Set The EventListener That uses the ID of the buttons as declared above as a reference

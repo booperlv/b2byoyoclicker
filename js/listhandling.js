@@ -19,8 +19,12 @@ const collectAllJudgeData = () => {
         let judgedataobject = new judgeEntry();
 
         let pvalues = currentjudgediv.getElementsByTagName('p');
-        let positivevalues = currentjudgediv.getElementsByClassName('positivep')
-        let negativevalues = currentjudgediv.getElementsByClassName('negativep')
+        let positivevalues = currentjudgediv.getElementsByClassName(
+            'positivep'
+        );
+        let negativevalues = currentjudgediv.getElementsByClassName(
+            'negativep'
+        );
         judgedataobject.judgename = currentjudgediv.className;
         judgedataobject.positive = positivevalues[0].children[0].innerHTML;
         judgedataobject.negative = negativevalues[0].children[0].innerHTML;
@@ -174,7 +178,7 @@ const newPlayerListEntryHTML = (listobject) => {
         judgename.appendChild(judgescores);
         judgediv.appendChild(judgename);
 
-        judgediv.setAttribute('class', 'judgescore')
+        judgediv.setAttribute('class', 'judgescore');
         perjudgeinfo.appendChild(judgediv);
     });
 
@@ -185,13 +189,13 @@ const newPlayerListEntryHTML = (listobject) => {
         judgearray.length
     )} ${listobject.sumobject.minusDivideByLength(judgearray.length)}`;
     nameparagraph.innerHTML = playername;
-    deletewholeentry.innerHTML = "X";
+    deletewholeentry.innerHTML = 'X';
 
     playerdiv.appendChild(nameparagraph);
 
     divinline.appendChild(summaryscore);
     divinline.appendChild(togglebutton);
-    divinline.setAttribute('class', 'inlinescores')
+    divinline.setAttribute('class', 'inlinescores');
     playerdiv.appendChild(divinline);
 
     playerdiv.appendChild(perjudgeinfo);

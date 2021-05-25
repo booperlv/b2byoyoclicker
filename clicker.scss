@@ -84,7 +84,7 @@ input.allinput:focus {
     border: 0.15rem solid #7a7a7a;
 }
 
-input[type=button].allbutton,
+input[type='button'].allbutton,
 button.allbutton {
     outline: none;
     background-color: #ffb900;
@@ -93,7 +93,7 @@ button.allbutton {
     border-radius: 0.25rem;
     margin: 0.25em 0;
 }
-input[type=button].allbutton:focus,
+input[type='button'].allbutton:focus,
 button.allbutton:focus {
     border: 0.15rem solid black;
     box-shadow: 0 0 0 0.125em white;
@@ -120,7 +120,8 @@ button.allbutton:focus {
         width: 100%;
     }
 
-    #JudgeNames, #JudgeKeys {
+    #JudgeNames,
+    #JudgeKeys {
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -131,7 +132,7 @@ button.allbutton:focus {
         padding: 0.5rem;
         overflow: scroll;
         overflow-x: hidden;
-        -ms-overflow-style: none;  /* Internet Explorer 10+ */
+        -ms-overflow-style: none; /* Internet Explorer 10+ */
         scrollbar-width: none;
     }
     #JudgeNames::-webkit-scrollbar {
@@ -296,5 +297,4 @@ button.allbutton:focus {
             }
         }
     }
-
 }
