@@ -1,13 +1,12 @@
-class judgeEntry {
-    constructor(judgename, negative, positive) {
-        this.judgename = judgename;
-        this.positive = positive;
-        this.negative = negative;
-    }
-}
-
 //Place Judge Data into an Object following judgeEntry, add each entry to an array
-const collectAllJudgeData = () => {
+const collectJudgeEntryData = () => {
+    class judgeEntry {
+        constructor(judgename, negative, positive) {
+            this.judgename = judgename;
+            this.positive = positive;
+            this.negative = negative;
+        }
+    }
     const maindiv = document.getElementById('JudgeClickerDir');
     var judgearray = [];
     for (
@@ -22,7 +21,7 @@ const collectAllJudgeData = () => {
             currentjudgediv.getElementsByClassName('positivep');
         let negativevalues =
             currentjudgediv.getElementsByClassName('negativep');
-        judgedataobject.judgename = currentjudgediv.className;
+        judgedataobject.judgename = currentjudgediv.dataset.name;
         judgedataobject.positive = positivevalues[0].children[0].innerHTML;
         judgedataobject.negative = negativevalues[0].children[0].innerHTML;
 
@@ -31,26 +30,26 @@ const collectAllJudgeData = () => {
     return judgearray;
 };
 
-//Get sum of all judges scores, flexible class
-class AllJudgeSum {
-    constructor(positive, negative) {
-        this.positive = positive;
-        this.negative = negative;
-    }
-    plusDivideByLength(length) {
-        let output = this.positive / length;
-        return `+${output.toFixed(2)}`;
-    }
-    minusDivideByLength(length) {
-        let output = this.negative / length;
-        return `-${output.toFixed(2)}`;
-    }
-    getSum() {
-        return this.positive - this.negative;
-    }
-}
 //Return an Object following AllJudgeSum using an input from judgearray
-const getAllJudgeSum = (judgearray) => {
+const collectSumOfEachJudge = (judgearray) => {
+    //Get sum of all judges scores, contains options
+    class AllJudgeSum {
+        constructor(positive, negative) {
+            this.positive = positive;
+            this.negative = negative;
+        }
+        plusDivideByLength(length) {
+            let output = this.positive / length;
+            return `+${output.toFixed(2)}`;
+        }
+        minusDivideByLength(length) {
+            let output = this.negative / length;
+            return `-${output.toFixed(2)}`;
+        }
+        getSum() {
+            return this.positive - this.negative;
+        }
+    }
     let temparraypositive = [];
     let temparraynegative = [];
     judgearray.forEach(function (judgeobject) {
@@ -68,21 +67,26 @@ const getAllJudgeSum = (judgearray) => {
 
 //Create List Entry that extends judgeData and Scores
 
-class listEntry {
-    constructor(playername, judgearray, sumpositive, sumnegative, sumobject) {
-        this.playername = playername;
-        this.judgearray = judgearray;
-        this.sumpositive = sumpositive;
-        this.sumnegative = sumnegative;
-        this.sumobject = sumobject;
-    }
-}
-
 //Object based on listEntry that will be used for data transfer within the list
-const newPlayerListObject = (judgearray) => {
-    let listentry = new listEntry();
+const collectPlayerListEntry = (judgearray) => {
+    class listEntry {
+        constructor(
+            playername,
+            judgearray,
+            sumpositive,
+            sumnegative,
+            sumobject
+        ) {
+            this.playername = playername;
+            this.judgearray = judgearray;
+            this.sumpositive = sumpositive;
+            this.sumnegative = sumnegative;
+            this.sumobject = sumobject;
+        }
+    }
     let playername = document.getElementById('NameForSave').value;
-    let sumobject = getAllJudgeSum(judgearray);
+    let sumobject = collectSumOfEachJudge(judgearray);
+    let listentry = new listEntry();
     listentry.playername = playername;
     listentry.judgearray = judgearray;
     listentry.sumpositive = sumobject.plusDivideByLength(judgearray.length);
@@ -90,40 +94,22 @@ const newPlayerListObject = (judgearray) => {
     listentry.sumobject = sumobject;
     return listentry;
 };
-//Sorts the Children of an element based on their "data-sum" attribute in descending order
-const sortChildrenToDescend = () => {
-    const parentdiv = document.getElementById('PlayerList');
-    [...parentdiv.children]
-        .sort((a, b) => b.dataset.sum - a.dataset.sum)
-        .forEach((node) => parentdiv.appendChild(node));
-};
 
 //Function that accepts newplayerlistobject as a parameter and generates html content based on it.
 
-//Set Value Of Clicker Span to 0
-const resetScores = () => {
-    const clickerdir = document.getElementById('JudgeClickerDir');
-    for (
-        let currentindex = 0;
-        currentindex < clickerdir.getElementsByTagName('p').length;
-        currentindex++
-    ) {
-        let currentspan =
-            clickerdir.getElementsByTagName('p')[currentindex]
-                .firstElementChild;
-        currentspan.innerHTML = 0;
-    }
-};
-
+//Reset Scores of All CLickers
 const newPlayerListEntryHTML = (listobject) => {
     /*
 	Created Structure is as follows:
+
 	<li>
-		<p>
-			Name Of Player
-            <button> delete the entire li entry </button>
-		</p>
-        <div> for inline
+
+        <div> first inline
+		    <p> Name Of Player </p>
+            <span> delete the entire li entry </span>
+        </div>
+
+        <div> second inline
 		    <span> Summary Scores </span>
 		    <button> Toggle Visibility of span below </button>
         </div> for inline
@@ -137,28 +123,54 @@ const newPlayerListEntryHTML = (listobject) => {
 				<span> Per Judge Score </span>
 			</div>
 		</div>
+
 	</li>
+
     */
 
-    //Element Creation for a list entry, will output in respective order
-    const listdiv = document.getElementById('PlayerList');
-    let playerdiv = document.createElement('li');
+    //--------------------//
 
-    let firstlinediv = document.createElement('div');
-    let nameparagraph = document.createElement('p');
-    let deleteplayerdiv = document.createElement('span');
-
-    let secondlinediv = document.createElement('div');
-    let summaryscore = document.createElement('span');
-    let togglebutton = document.createElement('button');
-    let buttonicon = document.createElement('i');
-
-    let perjudgeinfo = document.createElement('div');
-
-    //Create For Loop that uses the judge array parameter
     let playername = listobject.playername;
     let judgearray = listobject.judgearray;
 
+    //--------------------//
+
+    let perjudgeinfo = document.createElement('div');
+    perjudgeinfo.style.display = 'none';
+
+    //--------------------//
+
+    let nameparagraph = document.createElement('p');
+    nameparagraph.innerHTML = playername;
+
+    let deleteplayerspan = document.createElement('span');
+    deleteplayerspan.innerHTML = 'X';
+    deleteplayerspan.setAttribute('class', 'allbutton');
+    //Create Function for delete whole entry button
+    deleteplayerspan.addEventListener('click', function () {
+        if (
+            confirm(`Do you really want to remove ${playername} from the list?`)
+        ) {
+            playerdiv.remove();
+        }
+    });
+
+    let firstlinediv = document.createElement('div');
+    firstlinediv.setAttribute('class', 'inlinenameandbutton');
+    firstlinediv.appendChild(nameparagraph);
+    firstlinediv.appendChild(deleteplayerspan);
+
+    //--------------------//
+
+    let summaryscore = document.createElement('span');
+    summaryscore.innerHTML = `${listobject.sumobject.plusDivideByLength(
+        judgearray.length
+    )} ${listobject.sumobject.minusDivideByLength(judgearray.length)}`;
+
+    let togglebutton = document.createElement('button');
+    let buttonicon = document.createElement('i');
+    buttonicon.setAttribute('class', 'arrow down');
+    togglebutton.appendChild(buttonicon);
     togglebutton.addEventListener('click', function () {
         if (perjudgeinfo.style.display == 'none') {
             perjudgeinfo.style.display = 'block';
@@ -166,12 +178,6 @@ const newPlayerListEntryHTML = (listobject) => {
             perjudgeinfo.style.display = 'none';
         }
     });
-    buttonicon.setAttribute('class', 'arrow down');
-
-    perjudgeinfo.style.display = 'none';
-    //Set the data-sum attribute for sorting
-    playerdiv.dataset.sum = listobject.sumobject.getSum();
-
     judgearray.forEach((object) => {
         let judgediv = document.createElement('div');
         let judgename = document.createElement('p');
@@ -185,43 +191,52 @@ const newPlayerListEntryHTML = (listobject) => {
         perjudgeinfo.appendChild(judgediv);
     });
 
-    //Create Function for delete whole entry button
-    deleteplayerdiv.addEventListener('click', function () {
-        if (
-            confirm(`Do you really want to remove ${playername} from the list?`)
-        ) {
-            playerdiv.remove();
-        }
-    });
-
-    //Start Placing the Elements in their respective dom positions
-    togglebutton.appendChild(buttonicon);
-    playerdiv.setAttribute('id', 'player' + listdiv.children.length);
-    firstlinediv.setAttribute('class', 'inlinenameandbutton');
-    nameparagraph.innerHTML = playername;
-    deleteplayerdiv.innerHTML = 'X';
-    deleteplayerdiv.setAttribute('class', 'allbutton');
-    summaryscore.innerHTML = `${listobject.sumobject.plusDivideByLength(
-        judgearray.length
-    )} ${listobject.sumobject.minusDivideByLength(judgearray.length)}`;
-
-    firstlinediv.appendChild(nameparagraph);
-    firstlinediv.appendChild(deleteplayerdiv);
-    playerdiv.appendChild(firstlinediv);
-
+    let secondlinediv = document.createElement('div');
     secondlinediv.appendChild(summaryscore);
     secondlinediv.appendChild(togglebutton);
     secondlinediv.setAttribute('class', 'inlinescores');
-    playerdiv.appendChild(secondlinediv);
 
+    //--------------------//
+
+    const listdiv = document.getElementById('PlayerList');
+
+    let playerdiv = document.createElement('li');
+    playerdiv.setAttribute('id', 'player' + listdiv.children.length);
+    //Set the data-sum attribute for sorting
+    playerdiv.dataset.sum = listobject.sumobject.getSum();
+    playerdiv.appendChild(firstlinediv);
+    playerdiv.appendChild(secondlinediv);
     playerdiv.appendChild(perjudgeinfo);
 
     listdiv.appendChild(playerdiv);
+
+    //--------------------//
+
+    //Sorts the Children of an element based on their "data-sum" attribute in descending order
+    const sortChildrenToDescend = () => {
+        const parentdiv = document.getElementById('PlayerList');
+        [...parentdiv.children]
+            .sort((a, b) => b.dataset.sum - a.dataset.sum)
+            .forEach((node) => parentdiv.appendChild(node));
+    };
     sortChildrenToDescend();
 
+    const resetScores = () => {
+        const clickerdir = document.getElementById('JudgeClickerDir');
+        for (
+            let currentindex = 0;
+            currentindex < clickerdir.getElementsByTagName('p').length;
+            currentindex++
+        ) {
+            let currentspan =
+                clickerdir.getElementsByTagName('p')[currentindex]
+                    .firstElementChild;
+            currentspan.innerHTML = 0;
+        }
+    };
     resetScores();
 };
 document.getElementById('SaveScore').addEventListener('click', function () {
-    let object = newPlayerListObject(collectAllJudgeData());
+    let object = collectPlayerListEntry(collectJudgeEntryData());
     newPlayerListEntryHTML(object);
 });
