@@ -120,6 +120,10 @@ button.allbutton:focus {
         width: 100%;
     }
 
+    label.menulabel {
+        font-size: 1em;
+    }
+
     #JudgeNames,
     #JudgeKeys {
         display: flex;
@@ -127,8 +131,8 @@ button.allbutton:focus {
         align-items: center;
 
         height: 20%;
-        border: 0.15em solid white;
-        border-radius: 0.2em;
+        border: 0.15rem solid white;
+        border-radius: 0.2rem;
         padding: 0.5rem;
         overflow: scroll;
         overflow-x: hidden;
@@ -151,7 +155,7 @@ button.allbutton:focus {
                 input {
                     display: inline-flex;
                     flex-direction: row;
-                    width: 45%;
+                    width: 47.5%;
                 }
             }
         }
@@ -290,24 +294,27 @@ button.allbutton:focus {
                     box-shadow: 0 white;
                 }
             }
-            .judgescore {
+            div div.judgescore {
                 display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                padding: 0.5em;
                 margin: 0;
-                padding: 0.25em;
+                border-bottom: 1px solid white;
                 p {
                     display: flex;
-                    margin: 0;
-                    padding: 0;
                     color: white;
                     background-color: #343a40;
-                    span {
-                        margin: 0;
-                        padding: 0;
-                        background-color: white;
-                        border-radius: 0.2em;
-                        color: black;
-                        margin-left: auto;
-                    }
+                    padding: 0;
+                    margin: 0;
+                }
+                span {
+                    display: flex;
+                    background-color: white;
+                    border-radius: 0.2em;
+                    color: black;
+                    padding: 0;
+                    margin: 0;
                 }
             }
         }

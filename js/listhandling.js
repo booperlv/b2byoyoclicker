@@ -133,8 +133,8 @@ const newPlayerListEntryHTML = (listobject) => {
 			<div>
 			    <p> 
 				    Judge Name
-				    <span> Per Judge Score </span>
 			    </p>
+				<span> Per Judge Score </span>
 			</div>
 		</div>
 	</li>
@@ -178,8 +178,8 @@ const newPlayerListEntryHTML = (listobject) => {
         let judgescores = document.createElement('span');
         judgename.innerHTML = `${object.judgename}`;
         judgescores.innerHTML = `+${object.positive}  -${object.negative}`;
-        judgename.appendChild(judgescores);
         judgediv.appendChild(judgename);
+        judgediv.appendChild(judgescores);
 
         judgediv.setAttribute('class', 'judgescore');
         perjudgeinfo.appendChild(judgediv);

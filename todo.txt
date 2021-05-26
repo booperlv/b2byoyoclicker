@@ -6,9 +6,3 @@ Fix styling inside the listdiv (Notably .judgescore)
 Set the font sizes properly
 
 Find good font and provide web-safe fallbacks
-
-Style labels tags in the menu
-
-Create proper spacing between components in menu
-
-Floating Comfirmation Prompt that is reusable for buttons (y/n)
