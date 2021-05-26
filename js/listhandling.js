@@ -18,13 +18,10 @@ const collectAllJudgeData = () => {
         let currentjudgediv = maindiv.children[currentdiv];
         let judgedataobject = new judgeEntry();
 
-        let pvalues = currentjudgediv.getElementsByTagName('p');
-        let positivevalues = currentjudgediv.getElementsByClassName(
-            'positivep'
-        );
-        let negativevalues = currentjudgediv.getElementsByClassName(
-            'negativep'
-        );
+        let positivevalues =
+            currentjudgediv.getElementsByClassName('positivep');
+        let negativevalues =
+            currentjudgediv.getElementsByClassName('negativep');
         judgedataobject.judgename = currentjudgediv.className;
         judgedataobject.positive = positivevalues[0].children[0].innerHTML;
         judgedataobject.negative = negativevalues[0].children[0].innerHTML;
@@ -111,11 +108,13 @@ const resetScores = () => {
         currentindex < clickerdir.getElementsByTagName('p').length;
         currentindex++
     ) {
-        let currentspan = clickerdir.getElementsByTagName('p')[currentindex]
-            .firstElementChild;
+        let currentspan =
+            clickerdir.getElementsByTagName('p')[currentindex]
+                .firstElementChild;
         currentspan.innerHTML = 0;
     }
 };
+
 const newPlayerListEntryHTML = (listobject) => {
     /*
 	Created Structure is as follows:
@@ -130,7 +129,7 @@ const newPlayerListEntryHTML = (listobject) => {
         </div> for inline
 
 		<div>
-			for every judge and every judegobject in listobject ->
+			for every judge and every judgeobject in listobject ->
 			<div>
 			    <p> 
 				    Judge Name
@@ -187,10 +186,13 @@ const newPlayerListEntryHTML = (listobject) => {
     });
 
     //Create Function for delete whole entry button
-    deleteplayerdiv.addEventListener('click', function() {
-        //Hopefully create a floating prompt that confirms if you really want to delete the entry
-        playerdiv.remove()
-    })
+    deleteplayerdiv.addEventListener('click', function () {
+        if (
+            confirm(`Do you really want to remove ${playername} from the list?`)
+        ) {
+            playerdiv.remove();
+        }
+    });
 
     //Start Placing the Elements in their respective dom positions
     togglebutton.appendChild(buttonicon);
@@ -198,13 +200,13 @@ const newPlayerListEntryHTML = (listobject) => {
     firstlinediv.setAttribute('class', 'inlinenameandbutton');
     nameparagraph.innerHTML = playername;
     deleteplayerdiv.innerHTML = 'X';
-    deleteplayerdiv.setAttribute('class', 'allbutton')
+    deleteplayerdiv.setAttribute('class', 'allbutton');
     summaryscore.innerHTML = `${listobject.sumobject.plusDivideByLength(
         judgearray.length
     )} ${listobject.sumobject.minusDivideByLength(judgearray.length)}`;
 
     firstlinediv.appendChild(nameparagraph);
-    firstlinediv.appendChild(deleteplayerdiv)
+    firstlinediv.appendChild(deleteplayerdiv);
     playerdiv.appendChild(firstlinediv);
 
     secondlinediv.appendChild(summaryscore);

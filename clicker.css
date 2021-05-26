@@ -1,296 +1,296 @@
 @font-face {
-  font-family: "Iosevka";
-  src: url("assets/fonts/iosevka.ttf") format("ttf");
+    font-family: 'Iosevka';
+    src: url('assets/fonts/iosevka.ttf') format('ttf');
 }
 @font-face {
-  font-family: "Fantasque Sans Mono";
-  src: url("assets/fonts/FantasqueSansMono-Regular.ttf") format("ttf");
+    font-family: 'Fantasque Sans Mono';
+    src: url('assets/fonts/FantasqueSansMono-Regular.ttf') format('ttf');
 }
 html {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 *,
 *:before,
 *:after {
-  box-sizing: inherit;
+    box-sizing: inherit;
 }
 
 * {
-  box-sizing: border-box;
-  font-family: "Fantasque Sans Mono", Iosevka;
+    box-sizing: border-box;
+    font-family: 'Fantasque Sans Mono', Iosevka;
 }
 
 body {
-  width: 100%;
-  overflow: hidden;
-  padding: 0;
-  margin: 0;
-  background-color: #343a40;
-  color: white;
+    width: 100%;
+    overflow: hidden;
+    padding: 0;
+    margin: 0;
+    background-color: #343a40;
+    color: white;
 }
 
 .arrow {
-  border: solid white;
-  border-width: 0 3px 3px 0;
-  display: inline-block;
-  padding: 3px;
+    border: solid white;
+    border-width: 0 3px 3px 0;
+    display: inline-block;
+    padding: 3px;
 }
 
 .right {
-  transform: rotate(-45deg);
-  -webkit-transform: rotate(-45deg);
+    transform: rotate(-45deg);
+    -webkit-transform: rotate(-45deg);
 }
 
 .left {
-  transform: rotate(135deg);
-  -webkit-transform: rotate(135deg);
+    transform: rotate(135deg);
+    -webkit-transform: rotate(135deg);
 }
 
 .up {
-  transform: rotate(-135deg);
-  -webkit-transform: rotate(-135deg);
+    transform: rotate(-135deg);
+    -webkit-transform: rotate(-135deg);
 }
 
 .down {
-  transform: rotate(45deg);
-  -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
 }
 
 .gutter {
-  background-color: #fff;
-  margin: 0;
-  padding: 0;
-  background-repeat: no-repeat;
-  background-position: 50%;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+    background-repeat: no-repeat;
+    background-position: 50%;
 }
 
 .gutter.gutter-horizontal {
-  cursor: col-resize;
+    cursor: col-resize;
 }
 
 .gutter.gutter-vertical {
-  cursor: row-resize;
+    cursor: row-resize;
 }
 
 input.allinput {
-  outline: none;
-  border: 0.125rem solid white;
-  border-radius: 0.25rem;
-  height: 1.5em;
-  margin: 0.25em 0;
+    outline: none;
+    border: 0.125rem solid white;
+    border-radius: 0.25rem;
+    height: 1.5em;
+    margin: 0.25em 0;
 }
 
 input.allinput:focus {
-  border: 0.15rem solid #7a7a7a;
+    border: 0.15rem solid #7a7a7a;
 }
 
-input[type=button].allbutton,
+input[type='button'].allbutton,
 button.allbutton {
-  outline: none;
-  background-color: #ffb900;
-  color: black;
-  border: 0.125rem solid #ffb900;
-  border-radius: 0.25rem;
-  margin: 0.25em 0;
+    outline: none;
+    background-color: #ffb900;
+    color: black;
+    border: 0.125rem solid #ffb900;
+    border-radius: 0.25rem;
+    margin: 0.25em 0;
 }
 
-input[type=button].allbutton:focus,
+input[type='button'].allbutton:focus,
 button.allbutton:focus {
-  border: 0.15rem solid black;
-  box-shadow: 0 0 0 0.125em white;
+    border: 0.15rem solid black;
+    box-shadow: 0 0 0 0.125em white;
 }
 
 #ColumnsContent {
-  display: flex;
-  width: 100vw;
-  height: 100vh;
-  padding: 0;
-  margin: 0;
+    display: flex;
+    width: 100vw;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
 }
 #ColumnsContent .column {
-  height: 100vh;
-  padding: 0.5rem;
+    height: 100vh;
+    padding: 0.5rem;
 }
 
 #ConfigureMenu {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 #ConfigureMenu * {
-  width: 100%;
+    width: 100%;
 }
 #ConfigureMenu #JudgeNames,
 #ConfigureMenu #JudgeKeys {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  height: 20%;
-  border: 0.15em solid white;
-  border-radius: 0.2em;
-  padding: 0.5rem;
-  overflow: scroll;
-  overflow-x: hidden;
-  -ms-overflow-style: none;
-  /* Internet Explorer 10+ */
-  scrollbar-width: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 20%;
+    border: 0.15em solid white;
+    border-radius: 0.2em;
+    padding: 0.5rem;
+    overflow: scroll;
+    overflow-x: hidden;
+    -ms-overflow-style: none;
+    /* Internet Explorer 10+ */
+    scrollbar-width: none;
 }
 #ConfigureMenu #JudgeNames::-webkit-scrollbar {
-  display: none;
+    display: none;
 }
 #ConfigureMenu #JudgeKeys::-webkit-scrollbar {
-  display: none;
+    display: none;
 }
 #ConfigureMenu #JudgeKeys div div {
-  display: flex;
-  justify-content: space-between;
-  align-items: space-between;
+    display: flex;
+    justify-content: space-between;
+    align-items: space-between;
 }
 #ConfigureMenu #JudgeKeys div div input {
-  display: inline-flex;
-  flex-direction: row;
-  width: 45%;
+    display: inline-flex;
+    flex-direction: row;
+    width: 45%;
 }
 #ConfigureMenu #BottomMenu {
-  margin-top: auto;
+    margin-top: auto;
 }
 #ConfigureMenu #BottomMenu #ContainerToggleKey {
-  background-color: #343a40;
-  color: white;
+    background-color: #343a40;
+    color: white;
 }
 #ConfigureMenu #BottomMenu #ContainerToggleVisibility {
-  background-color: #343a40;
-  color: white;
+    background-color: #343a40;
+    color: white;
 }
 
 #MiddlePortion {
-  padding: 0;
-  margin: 0;
-  display: inline-flex;
-  flex-direction: column;
+    padding: 0;
+    margin: 0;
+    display: inline-flex;
+    flex-direction: column;
 }
 #MiddlePortion #MediaSettings {
-  height: auto;
+    height: auto;
 }
 #MiddlePortion #MediaDisplay {
-  padding: 0.5em;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
+    padding: 0.5em;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
 }
 #MiddlePortion #MediaDisplay #VideoFrame {
-  height: 100%;
+    height: 100%;
 }
 #MiddlePortion #JudgeClickerDir {
-  display: inline-flex;
-  flex-direction: row;
-  justify-content: space-evenly;
-  align-content: space-around;
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-content: space-around;
 }
 #MiddlePortion #JudgeClickerDir div .ClickerSignContainer p {
-  width: 50%;
-  display: inline-flex;
-  text-align: center;
+    width: 50%;
+    display: inline-flex;
+    text-align: center;
 }
 #MiddlePortion #JudgeClickerDir div .ClickerButtonContainer button {
-  width: 50%;
-  text-align: center;
+    width: 50%;
+    text-align: center;
 }
 
 #Player {
-  display: flex;
-  flex-direction: column;
-  flex-wrap: true;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: true;
 }
 #Player input {
-  width: 100%;
+    width: 100%;
 }
 #Player #PlayerMenu {
-  margin-bottom: 0.25em;
+    margin-bottom: 0.25em;
 }
 #Player ul#PlayerList {
-  border: 0.15em solid white;
-  border-radius: 0.2em;
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  list-style-type: none;
+    border: 0.15em solid white;
+    border-radius: 0.2em;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
 }
 #Player ul#PlayerList li {
-  margin-bottom: 0.2em;
-  padding: 0;
+    margin-bottom: 0.2em;
+    padding: 0;
 }
 #Player ul#PlayerList li .inlinenameandbutton {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  background-color: #ffb900;
-  text-align: center;
-  padding: 0.25em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background-color: #ffb900;
+    text-align: center;
+    padding: 0.25em;
 }
 #Player ul#PlayerList li .inlinenameandbutton p {
-  display: inline-flex;
-  color: black;
-  padding: 0;
-  margin: 0;
+    display: inline-flex;
+    color: black;
+    padding: 0;
+    margin: 0;
 }
 #Player ul#PlayerList li .inlinenameandbutton span {
-  display: inline-flex;
-  color: black;
-  cursor: pointer;
-  margin: 0;
-  padding: 0;
+    display: inline-flex;
+    color: black;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
 }
 #Player ul#PlayerList li .inlinescores {
-  display: flex;
-  flex-direction: row;
-  background-color: #6c757d;
+    display: flex;
+    flex-direction: row;
+    background-color: #6c757d;
 }
 #Player ul#PlayerList li .inlinescores span {
-  display: flex;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-  flex-grow: 100;
-  height: 100%;
-  background-color: #6c757d;
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+    flex-grow: 100;
+    height: 100%;
+    background-color: #6c757d;
 }
 #Player ul#PlayerList li .inlinescores button {
-  height: 100%;
-  background-color: #6c757d;
-  margin: 0;
-  border: 0;
-  border-radius: 0;
+    height: 100%;
+    background-color: #6c757d;
+    margin: 0;
+    border: 0;
+    border-radius: 0;
 }
 #Player ul#PlayerList li .inlinescores button i {
-  display: inline-flex;
-  background-color: #6c757d;
-  color: white;
+    display: inline-flex;
+    background-color: #6c757d;
+    color: white;
 }
 #Player ul#PlayerList li .inlinescores button:focus {
-  border: 0;
-  box-shadow: 0 white;
+    border: 0;
+    box-shadow: 0 white;
 }
 #Player ul#PlayerList li .judgescore {
-  display: flex;
-  margin: 0;
-  padding: 0.25em;
+    display: flex;
+    margin: 0;
+    padding: 0.25em;
 }
 #Player ul#PlayerList li .judgescore p {
-  display: flex;
-  margin: 0;
-  padding: 0;
-  color: white;
-  background-color: #343a40;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    color: white;
+    background-color: #343a40;
 }
 #Player ul#PlayerList li .judgescore p span {
-  margin: 0;
-  padding: 0;
-  background-color: white;
-  border-radius: 0.2em;
-  color: black;
-  margin-left: auto;
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    border-radius: 0.2em;
+    color: black;
+    margin-left: auto;
 }
 
 /*# sourceMappingURL=clicker.css.map */

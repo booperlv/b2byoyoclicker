@@ -23,7 +23,7 @@ const handleJudgeNumber = (numberofjudges) => {
     judgenamediv.innerHTML = '';
     judgekeydiv.innerHTML = '';
     for (let currentjudge = 0; currentjudge < numberofjudges; currentjudge++) {
-        let displayedindex = currentjudge + 1
+        let displayedindex = currentjudge + 1;
 
         let judgeinput = document.createElement('input');
         let judgeinputlabel = document.createElement('label');
@@ -76,9 +76,8 @@ const collectJudgeNames = () => {
             judgeinputdiv.getElementsByTagName('input').length;
             childelementindex++
         ) {
-            let childelement = judgeinputdiv.getElementsByTagName('input')[
-                childelementindex
-            ];
+            let childelement =
+                judgeinputdiv.getElementsByTagName('input')[childelementindex];
             if (childelement.value) {
                 JudgeNames.push(childelement.value);
             } else {
@@ -103,8 +102,7 @@ class JudgeKeysClass {
     }
 }
 const collectJudgeKeys = () => {
-    const judgeinputdiv = document
-        .querySelectorAll('#JudgeKeys > div');
+    const judgeinputdiv = document.querySelectorAll('#JudgeKeys > div');
     let judgeKeys = [];
     if (judgeinputdiv) {
         for (
@@ -115,16 +113,16 @@ const collectJudgeKeys = () => {
             let childelements = judgeinputdiv[childelementindex];
             let judgekeyobject = new JudgeKeysClass();
             judgekeyobject.id = this.id;
-            let inputsinside = childelements.getElementsByTagName('input')
+            let inputsinside = childelements.getElementsByTagName('input');
             //check if positive is not falsy, else make value null
             if (inputsinside[0].value) {
-                judgekeyobject.positive = inputsinside[0].value
+                judgekeyobject.positive = inputsinside[0].value;
             } else {
                 judgekeyobject.positive = '';
             }
             //check if negative is not falsy, else make value null
             if (inputsinside[1].value) {
-                judgekeyobject.negative = inputsinside[1].value
+                judgekeyobject.negative = inputsinside[1].value;
             } else {
                 judgekeyobject.negative = '';
             }
@@ -179,9 +177,9 @@ const createJudgeClickers = (numberofjudges, keyobject) => {
 
     //Clear all applied event key handlers ondocument through the global variable
     if (eventKeyHandleArray) {
-        eventKeyHandleArray.forEach(keyfunction => {
-            document.removeEventListener('keypress', keyfunction)
-        })
+        eventKeyHandleArray.forEach((keyfunction) => {
+            document.removeEventListener('keypress', keyfunction);
+        });
         eventKeyHandleArray.length = 0; //empty array
     }
 
@@ -189,27 +187,23 @@ const createJudgeClickers = (numberofjudges, keyobject) => {
     const eventKeyHandle = (event) => {
         positivearr.forEach((currentcharpos, index) => {
             if (currentcharpos == event.key && keymode.checked) {
-                document
-                    .getElementById('positivebutton' + index)
-                    .click();
+                document.getElementById('positivebutton' + index).click();
                 return;
             } else {
                 return;
             }
-        })
+        });
         negativearr.forEach((currentcharneg, index) => {
             if (currentcharneg == event.key && keymode.checked) {
-                document
-                    .getElementById('negativebutton' + index)
-                    .click();
+                document.getElementById('negativebutton' + index).click();
                 return;
             } else {
-                return
+                return;
             }
-        })
+        });
     };
-    eventKeyHandleArray.push(eventKeyHandle)
-    document.addEventListener('keypress', eventKeyHandle)
+    eventKeyHandleArray.push(eventKeyHandle);
+    document.addEventListener('keypress', eventKeyHandle);
 
     let keymode = document.getElementById('ToggleKeyMode');
     //Loop the same amount as the number of judges,
