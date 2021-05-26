@@ -139,7 +139,7 @@ const collectJudgeKeys = () => {
 //Create Judge Clickers
 
 //Create Judge Clickers based on NumberOfJudges and JudgeNames
-let eventKeyHandle; //Store the event key as a global variable so it can be cleared
+let eventKeyHandleArray = []; //Store the event key as a global variable so it can be cleared
 const createJudgeClickers = (numberofjudges, keyobject) => {
     /*
 	Created Structure is as follows:
@@ -164,7 +164,6 @@ const createJudgeClickers = (numberofjudges, keyobject) => {
     const judgeclickerdiv = document.getElementById('JudgeClickerDir');
     judgeclickerdiv.innerHTML = '';
     const judgenames = collectJudgeNames();
-    console.log(judgenames)
 
     //Define Functions for the clickers
     function coreClicker(display) {
@@ -177,14 +176,18 @@ const createJudgeClickers = (numberofjudges, keyobject) => {
         positivearr.push(currentitem.positive);
         negativearr.push(currentitem.negative);
     });
-    console.log(`positivearr is ${positivearr}`)
-    console.log(`negativearr is ${negativearr}`)
-    console.log(`keyobject is ${keyobject}`)
+
+    //Clear all applied event key handlers ondocument through the global variable
+    if (eventKeyHandleArray) {
+        eventKeyHandleArray.forEach(keyfunction => {
+            document.removeEventListener('keypress', keyfunction)
+        })
+        eventKeyHandleArray.length = 0; //empty array
+    }
 
     //Set The EventListener That uses the ID of the buttons as declared above as a reference
     const eventKeyHandle = (event) => {
         positivearr.forEach((currentcharpos, index) => {
-            console.log(`currentcharpositive is ${currentcharpos} index is ${index}`)
             if (currentcharpos == event.key && keymode.checked) {
                 document
                     .getElementById('positivebutton' + index)
@@ -195,7 +198,6 @@ const createJudgeClickers = (numberofjudges, keyobject) => {
             }
         })
         negativearr.forEach((currentcharneg, index) => {
-            console.log(`currentcharnegative is ${currentcharneg} index is ${index}`)
             if (currentcharneg == event.key && keymode.checked) {
                 document
                     .getElementById('negativebutton' + index)
@@ -206,8 +208,8 @@ const createJudgeClickers = (numberofjudges, keyobject) => {
             }
         })
     };
-    document.removeEventListener('keypress', eventKeyHandle);
-    document.addEventListener('keypress', eventKeyHandle);
+    eventKeyHandleArray.push(eventKeyHandle)
+    document.addEventListener('keypress', eventKeyHandle)
 
     let keymode = document.getElementById('ToggleKeyMode');
     //Loop the same amount as the number of judges,
