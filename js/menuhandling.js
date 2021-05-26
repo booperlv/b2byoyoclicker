@@ -22,39 +22,47 @@ const handleJudgeNumber = (numberofjudges) => {
     const judgekeydiv = document.getElementById('JudgeKeys');
     judgenamediv.innerHTML = '';
     judgekeydiv.innerHTML = '';
-    for (let currentjudge = 0; currentjudge < numberofjudges; currentjudge++) {
+
+    for (currentjudge = 0; currentjudge < numberofjudges; currentjudge++) {
         let displayedindex = currentjudge + 1;
 
+        //Judge Name Handling
         let judgeinput = document.createElement('input');
-        let judgeinputlabel = document.createElement('label');
-        judgeinputlabel.innerHTML = `Judge ${displayedindex}`;
-        judgeinput.setAttribute('id', 'Judge' + displayedindex);
+        judgeinput.dataset.name = 'Judge' + displayedindex;
         judgeinput.setAttribute('placeholder', 'Name Of Judge');
         judgeinput.setAttribute('class', 'allinput');
+
+        let judgeinputlabel = document.createElement('label');
+        judgeinputlabel.innerHTML = `Judge ${displayedindex}`;
         judgeinputlabel.setAttribute('for', judgeinput.id);
 
-        let keydiv = document.createElement('div');
-        let judgename = document.createElement('label');
-        let linebreak = document.createElement('br');
-        let keycontainerdiv = document.createElement('div');
+        //Key Bind Handling 
+
         let judgepositive = document.createElement('input');
-        let judgenegative = document.createElement('input');
-
-        judgename.innerHTML = `Judge ${displayedindex}`;
-
-        keydiv.setAttribute('id', 'judgekeydiv' + currentjudge);
         judgepositive.setAttribute('class', 'judgepositive allinput');
         judgepositive.setAttribute('placeholder', 'Positive');
+
+        let judgenegative = document.createElement('input');
         judgenegative.setAttribute('class', 'judgenegative allinput');
         judgenegative.setAttribute('placeholder', 'Negative');
-        keydiv.appendChild(judgename);
-        keydiv.appendChild(linebreak);
+
+        let keycontainerdiv = document.createElement('div');
         keycontainerdiv.appendChild(judgepositive);
         keycontainerdiv.appendChild(judgenegative);
-        keydiv.appendChild(keycontainerdiv);
-        judgekeydiv.appendChild(keydiv);
+
+        let linebreak = document.createElement('br');
+
+        let judgename = document.createElement('label');
+        judgename.innerHTML = `Judge ${displayedindex}`;
         judgenamediv.appendChild(judgeinputlabel);
         judgenamediv.appendChild(judgeinput);
+
+        let keydiv = document.createElement('div');
+        keydiv.appendChild(judgename);
+        keydiv.appendChild(linebreak);
+        keydiv.appendChild(keycontainerdiv);
+
+        judgekeydiv.appendChild(keydiv);
     }
 };
 //Instantly Create Judge Names On Input
@@ -70,18 +78,12 @@ const collectJudgeNames = () => {
     const judgeinputdiv = document.getElementById('JudgeNames');
     let JudgeNames = [];
     if (judgeinputdiv.children) {
-        for (
-            let childelementindex = 0;
-            childelementindex <
-            judgeinputdiv.getElementsByTagName('input').length;
-            childelementindex++
-        ) {
-            let childelement =
-                judgeinputdiv.getElementsByTagName('input')[childelementindex];
+        for (let childelement of judgeinputdiv.getElementsByTagName('input'))
+        {
             if (childelement.value) {
                 JudgeNames.push(childelement.value);
             } else {
-                JudgeNames.push(childelement.id);
+                JudgeNames.push(childelement.dataset.name);
             }
         }
         return JudgeNames;
@@ -105,12 +107,7 @@ const collectJudgeKeys = () => {
     const judgeinputdiv = document.querySelectorAll('#JudgeKeys > div');
     let judgeKeys = [];
     if (judgeinputdiv) {
-        for (
-            let childelementindex = 0;
-            childelementindex < judgeinputdiv.length;
-            childelementindex++
-        ) {
-            let childelements = judgeinputdiv[childelementindex];
+        for (childelements of judgeinputdiv) {
             let judgekeyobject = new JudgeKeysClass();
             judgekeyobject.id = this.id;
             let inputsinside = childelements.getElementsByTagName('input');
@@ -137,7 +134,7 @@ const collectJudgeKeys = () => {
 //Create Judge Clickers
 
 //Create Judge Clickers based on NumberOfJudges and JudgeNames
-let eventKeyHandleArray = []; //Store the event key as a global variable so it can be cleared
+let eventKeyHandleArray = []; //Store the keypress events of the document as a global variable so it can be cleared
 const createJudgeClickers = (numberofjudges, keyobject) => {
     /*
 	Created Structure is as follows:
@@ -153,41 +150,97 @@ const createJudgeClickers = (numberofjudges, keyobject) => {
 				<span> Negative Clicks Display </span>
 			</p>
 		    </div>
-		    <div (ButtonContainer)
-			<button> Button to Add, increase value of ^, gets clicked according to key binding </button>
-			<button> Button to Subtract, increase value of ^, gets clicked according to key binding </button>
+		    <div> (ButtonContainer)
+			    <button> Button to Add, increase value of ^, gets clicked according to key binding </button>
+			    <button> Button to Subtract, increase value of ^, gets clicked according to key binding </button>
 		    </div>
 		</div>
 	*/
     const judgeclickerdiv = document.getElementById('JudgeClickerDir');
     judgeclickerdiv.innerHTML = '';
-    const judgenames = collectJudgeNames();
 
     //Define Functions for the clickers
-    function coreClicker(display) {
+    const coreClicker = display => {
         let displayvalue = Number(display.innerHTML);
         display.innerHTML = displayvalue + 1;
     }
-    var positivearr = [];
-    var negativearr = [];
+    let positivearr = [];
+    let negativearr = [];
     keyobject.forEach(function (currentitem) {
         positivearr.push(currentitem.positive);
         negativearr.push(currentitem.negative);
     });
+
+    //Loop the same amount as the number of judges, and create clickers
+    let positivebuttonarr = [];
+    let negativebuttonarr = [];
+    for (
+        let currentclicker = 0;
+        currentclicker < numberofjudges;
+        currentclicker++
+    ) {
+        let positivedisplay = document.createElement('span');
+        positivedisplay.innerHTML = '0';
+
+        let positivesign = document.createElement('p');
+        positivesign.setAttribute('class', 'positivep');
+        positivesign.innerHTML = '+';
+        positivesign.appendChild(positivedisplay);
+
+        let positivebutton = document.createElement('button');
+        positivebutton.innerHTML = '+';
+        positivebutton.addEventListener('click', function () {
+            coreClicker(positivedisplay);
+        });
+        positivebuttonarr.push(positivebutton)
+
+        let negativedisplay = document.createElement('span');
+        negativedisplay.innerHTML = '0';
+
+        let negativesign = document.createElement('p');
+        negativesign.setAttribute('class', 'negativep');
+        negativesign.innerHTML = '-';
+        negativesign.appendChild(negativedisplay);
+
+        let negativebutton = document.createElement('button');
+        negativebutton.innerHTML = '-';
+        negativebutton.addEventListener('click', function () {
+            coreClicker(negativedisplay);
+        });
+        negativebuttonarr.push(negativebutton)
+
+        let clickerdiv = document.createElement('div');
+
+        let signcontainer = document.createElement('div');
+        signcontainer.className = 'ClickerSignContainer';
+        signcontainer.appendChild(positivesign);
+        signcontainer.appendChild(negativesign);
+
+        let buttoncontainer = document.createElement('div');
+        buttoncontainer.className = 'ClickerButtonContainer';
+        buttoncontainer.appendChild(positivebutton);
+        buttoncontainer.appendChild(negativebutton);
+
+        clickerdiv.appendChild(signcontainer);
+        clickerdiv.appendChild(buttoncontainer);
+
+        judgeclickerdiv.appendChild(clickerdiv);
+
+    }
 
     //Clear all applied event key handlers ondocument through the global variable
     if (eventKeyHandleArray) {
         eventKeyHandleArray.forEach((keyfunction) => {
             document.removeEventListener('keypress', keyfunction);
         });
-        eventKeyHandleArray.length = 0; //empty array
+        eventKeyHandleArray = []; //empty array
     }
-
-    //Set The EventListener That uses the ID of the buttons as declared above as a reference
+    //Set The EventListener
     const eventKeyHandle = (event) => {
+        const keymode = document.getElementById('ToggleKeyMode');
         positivearr.forEach((currentcharpos, index) => {
             if (currentcharpos == event.key && keymode.checked) {
-                document.getElementById('positivebutton' + index).click();
+                positivebuttonarr[index].click();
                 return;
             } else {
                 return;
@@ -195,69 +248,16 @@ const createJudgeClickers = (numberofjudges, keyobject) => {
         });
         negativearr.forEach((currentcharneg, index) => {
             if (currentcharneg == event.key && keymode.checked) {
-                document.getElementById('negativebutton' + index).click();
+                negativebuttonarr[index].click();
                 return;
             } else {
                 return;
             }
         });
+        eventKeyHandleArray.push(eventKeyHandle);
     };
-    eventKeyHandleArray.push(eventKeyHandle);
-    document.addEventListener('keypress', eventKeyHandle);
+    document.addEventListener('keypress', eventKeyHandle)
 
-    let keymode = document.getElementById('ToggleKeyMode');
-    //Loop the same amount as the number of judges,
-    for (
-        let currentclicker = 0;
-        currentclicker < numberofjudges;
-        currentclicker++
-    ) {
-        let clickerdiv = document.createElement('div');
-        let signcontainer = document.createElement('div');
-        let buttoncontainer = document.createElement('div');
-        signcontainer.className = 'ClickerSignContainer';
-        buttoncontainer.className = 'ClickerButtonContainer';
-
-        let positivedisplay = document.createElement('span');
-        let positivesign = document.createElement('p');
-        let positivebutton = document.createElement('button');
-        positivebutton.addEventListener('click', function () {
-            coreClicker(positivedisplay);
-        });
-        positivesign.innerHTML = '+';
-        positivedisplay.innerHTML = '0';
-        positivebutton.innerHTML = '+';
-        positivebutton.setAttribute('id', 'positivebutton' + currentclicker);
-        positivesign.setAttribute('class', 'positivep');
-        positivesign.appendChild(positivedisplay);
-
-        let negativedisplay = document.createElement('span');
-        let negativesign = document.createElement('p');
-        let negativebutton = document.createElement('button');
-        negativebutton.addEventListener('click', function () {
-            coreClicker(negativedisplay);
-        });
-        negativesign.innerHTML = '-';
-        negativedisplay.innerHTML = '0';
-        negativebutton.innerHTML = '-';
-        negativebutton.setAttribute('id', 'negativebutton' + currentclicker);
-        negativesign.setAttribute('class', 'negativep');
-        negativesign.appendChild(negativedisplay);
-
-        //Set ID using index, for true uniqueness - Harvest ClassName for the actual displayed name.
-        clickerdiv.setAttribute('id', 'judgeclicker' + currentclicker);
-        clickerdiv.setAttribute('class', judgenames[currentclicker]);
-
-        signcontainer.appendChild(positivesign);
-        signcontainer.appendChild(negativesign);
-        clickerdiv.appendChild(signcontainer);
-
-        buttoncontainer.appendChild(positivebutton);
-        buttoncontainer.appendChild(negativebutton);
-        clickerdiv.appendChild(buttoncontainer);
-
-        judgeclickerdiv.appendChild(clickerdiv);
-    }
 };
 // Generate Clickers Using Last Two Functions
 document
