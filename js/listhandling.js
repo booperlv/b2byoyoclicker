@@ -128,17 +128,13 @@ const newPlayerListEntryHTML = (listobject) => {
 
     */
 
-    //--------------------//
-
     let playername = listobject.playername;
     let judgearray = listobject.judgearray;
 
-    //--------------------//
 
     let perjudgeinfo = document.createElement('div');
     perjudgeinfo.style.display = 'none';
 
-    //--------------------//
 
     let nameparagraph = document.createElement('p');
     nameparagraph.innerHTML = playername;
@@ -160,7 +156,6 @@ const newPlayerListEntryHTML = (listobject) => {
     firstlinediv.appendChild(nameparagraph);
     firstlinediv.appendChild(deleteplayerspan);
 
-    //--------------------//
 
     let summaryscore = document.createElement('span');
     summaryscore.innerHTML = `${listobject.sumobject.plusDivideByLength(
@@ -196,7 +191,6 @@ const newPlayerListEntryHTML = (listobject) => {
     secondlinediv.appendChild(togglebutton);
     secondlinediv.setAttribute('class', 'inlinescores');
 
-    //--------------------//
 
     const listdiv = document.getElementById('PlayerList');
 
@@ -208,9 +202,9 @@ const newPlayerListEntryHTML = (listobject) => {
     playerdiv.appendChild(secondlinediv);
     playerdiv.appendChild(perjudgeinfo);
 
+
     listdiv.appendChild(playerdiv);
 
-    //--------------------//
 
     //Sorts the Children of an element based on their "data-sum" attribute in descending order
     const sortChildrenToDescend = () => {
