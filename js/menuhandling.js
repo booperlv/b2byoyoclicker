@@ -23,10 +23,6 @@ class JudgeKeysClass {
         this.positive = positive;
         this.negative = negative;
     }
-    remap(remappos, remapneg) {
-        this.positive = remappos;
-        this.negative = remapneg;
-    }
 }
 const collectJudgeKeys = () => {
     const judgeinputdiv = document.querySelectorAll('#JudgeKeys > div');
@@ -192,13 +188,13 @@ const createJudgeClickers = (numberofjudges, judgenamearray, keyobject) => {
 
         //--------------------//
 
-        let positivesign = document.createElement('p');
-        positivesign.setAttribute('class', 'positivep');
+        let positivesign = document.createElement('span');
+        positivesign.setAttribute('class', 'positivespan');
         positivesign.innerHTML = '+';
         positivesign.appendChild(positivedisplay);
 
-        let negativesign = document.createElement('p');
-        negativesign.setAttribute('class', 'negativep');
+        let negativesign = document.createElement('span');
+        negativesign.setAttribute('class', 'negativespan');
         negativesign.innerHTML = '-';
         negativesign.appendChild(negativedisplay);
 

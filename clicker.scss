@@ -1,8 +1,4 @@
 @font-face {
-    font-family: 'Iosevka';
-    src: url('assets/fonts/iosevka.ttf') format('ttf');
-}
-@font-face {
     font-family: 'Fantasque Sans Mono';
     src: url('assets/fonts/FantasqueSansMono-Regular.ttf') format('ttf');
 }
@@ -19,7 +15,7 @@ html {
 
 * {
     box-sizing: border-box;
-    font-family: 'Fantasque Sans Mono', Iosevka;
+    font-family: 'Fantasque Sans Mono', Arial, Helvetica, sans-serif;
 }
 
 body {
@@ -245,6 +241,7 @@ button.allbutton:focus {
                 display: flex;
                 justify-content: space-between;
                 align-items: center;
+                flex-wrap:1;
                 width: 100%;
                 background-color: #ffb900;
                 text-align: center;
@@ -267,6 +264,7 @@ button.allbutton:focus {
             .inlinescores {
                 display: flex;
                 flex-direction: row;
+                flex-wrap:1;
                 background-color: #6c757d;
                 span {
                     display: flex;

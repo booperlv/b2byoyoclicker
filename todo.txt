@@ -1,8 +1,5 @@
 Style Clicker Buttons and Display
 
 Add overflow handling for buttons in listdiv
-Fix styling inside the listdiv (Notably .judgescore)
-
-Set the font sizes properly
 
 Find good font and provide web-safe fallbacks

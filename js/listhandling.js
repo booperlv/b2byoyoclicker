@@ -18,9 +18,9 @@ const collectJudgeEntryData = () => {
         let judgedataobject = new judgeEntry();
 
         let positivevalues =
-            currentjudgediv.getElementsByClassName('positivep');
+            currentjudgediv.getElementsByClassName('positivespan');
         let negativevalues =
-            currentjudgediv.getElementsByClassName('negativep');
+            currentjudgediv.getElementsByClassName('negativespan');
         judgedataobject.judgename = currentjudgediv.dataset.name;
         judgedataobject.positive = positivevalues[0].children[0].innerHTML;
         judgedataobject.negative = negativevalues[0].children[0].innerHTML;
