@@ -111,7 +111,7 @@ button.allbutton:focus {
 
 #ConfigureMenu {
   display: flex;
-  flex-flow: column wrap;
+  flex-flow: column nowrap;
 }
 #ConfigureMenu * {
   width: 100%;
