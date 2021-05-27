@@ -112,6 +112,14 @@ button.allbutton:focus {
 #ConfigureMenu {
   display: flex;
   flex-flow: column nowrap;
+  overflow: scroll;
+  overflow-x: hidden;
+  -ms-overflow-style: none;
+  /* Internet Explorer 10+ */
+  scrollbar-width: none;
+}
+#ConfigureMenu::-webkit-scrollbar {
+  display: none;
 }
 #ConfigureMenu * {
   width: 100%;
@@ -122,7 +130,7 @@ button.allbutton:focus {
 #ConfigureMenu #JudgeNames,
 #ConfigureMenu #JudgeKeys {
   display: flex;
-  flex-flow: column wrap;
+  flex-direction: column;
   align-items: center;
   height: 20%;
   border: 0.15rem solid white;
@@ -134,9 +142,7 @@ button.allbutton:focus {
   /* Internet Explorer 10+ */
   scrollbar-width: none;
 }
-#ConfigureMenu #JudgeNames::-webkit-scrollbar {
-  display: none;
-}
+#ConfigureMenu #JudgeNames::-webkit-scrollbar,
 #ConfigureMenu #JudgeKeys::-webkit-scrollbar {
   display: none;
 }
@@ -165,6 +171,15 @@ button.allbutton:focus {
 #MiddlePortion {
   display: inline-flex;
   flex-flow: column nowrap;
+  flex: 1 1 80vw;
+  overflow: scroll;
+  overflow-x: hidden;
+  -ms-overflow-style: none;
+  /* Internet Explorer 10+ */
+  scrollbar-width: none;
+}
+#MiddlePortion::-webkit-scrollbar {
+  display: none;
 }
 #MiddlePortion #MediaSettings {
   height: auto;
@@ -182,6 +197,14 @@ button.allbutton:focus {
   flex-flow: row nowrap;
   justify-content: space-evenly;
   align-content: center;
+  overflow: scroll;
+  overflow-y: hidden;
+  -ms-overflow-style: none;
+  /* Internet Explorer 10+ */
+  scrollbar-width: none;
+}
+#MiddlePortion #JudgeClickerDir::-webkit-scrollbar {
+  display: none;
 }
 #MiddlePortion #JudgeClickerDir div.JudgeClicker {
   display: flex;
@@ -205,6 +228,14 @@ button.allbutton:focus {
 #Player {
   display: flex;
   flex-flow: column nowrap;
+  overflow: scroll;
+  overflow-x: hidden;
+  -ms-overflow-style: none;
+  /* Internet Explorer 10+ */
+  scrollbar-width: none;
+}
+#Player::-webkit-scrollbar {
+  display: none;
 }
 #Player input {
   width: 100%;
