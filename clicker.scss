@@ -215,31 +215,38 @@ button.allbutton:focus {
         div.JudgeClicker {
             display: flex;
             //border: 2px solid black;
-            padding: 0.25em;
+            padding: 1rem;
+            justify-content: space-around;
+            align-items: center;
             .ClickerContainer {
-                padding: 10%; 
+                padding: 5%; 
                 display: flex;
                 flex-flow: column nowrap;
-                justify-content: space-around;
+                justify-content: space-evenly;
                 align-items: center;
-                //&:nth-child(odd) {
-                //    color: #02D432;
-                //}
-                //&:nth-child(even) {
-                //    color: #FF0018;
-                //}
                 span {
                     text-align: center;
                     font-weight: bold;
                 }
                 button {
+                    font-weight: bold;
                     text-align: center;
                     outline: none;
                     background-color: #ffb900;
-                    color: black;
+                    color: white;
                     border: 0.125rem solid #ffb900;
                     border-radius: 0.25rem;
                 }
+                //&.ClickerPositiveContainer {
+                //    button {
+                //        background-color: #90E172;
+                //    }
+                //}
+                //&.ClickerNegativeContainer {
+                //    button {
+                //        background-color: #FF9494;
+                //    }
+                //}
             }
         }
     }
@@ -271,6 +278,13 @@ button.allbutton:focus {
         margin: 0;
         padding: 0;
         list-style-type: none;
+        overflow: scroll;
+        overflow-x: hidden;
+        -ms-overflow-style: none; /* Internet Explorer 10+ */
+        scrollbar-width: none;
+        &::-webkit-scrollbar {
+            display: none;
+        }
         li {
             margin-bottom: 0.2em;
             padding: 0;
@@ -304,14 +318,25 @@ button.allbutton:focus {
                 justify-content: space-between;
                 align-items: center;
                 background-color: #6c757d;
-                span {
+                div.SummaryScoreContainer {
                     display: flex;
-                    text-align: center;
-                    justify-content: center;
-                    align-items: center;
-                    flex: 1 auto auto;
-                    height: 100%;
-                    background-color: #6c757d;
+                    flex-flow: row wrap;
+                    span {
+                        &.SummaryScorePositive {
+                            text-shadow: 0 0 0.15em #90E172;
+                        }
+                        &.SummaryScoreNegative {
+                            text-shadow: 0 0 0.15em #FF9494;
+                        }
+                        margin: 0.2em;
+                        display: flex;
+                        text-align: center;
+                        justify-content: center;
+                        align-items: center;
+                        flex: 1 auto auto;
+                        height: 100%;
+                        background-color: #6c757d;
+                    }
                 }
                 button {
                     height: 100%;
@@ -334,6 +359,7 @@ button.allbutton:focus {
                 display: flex;
                 flex-flow: row wrap;
                 justify-content: space-between;
+                align-items: center;
                 padding: 0.5em;
                 margin: 0;
                 border-bottom: 1px solid white;
@@ -344,13 +370,21 @@ button.allbutton:focus {
                     padding: 0;
                     margin: 0;
                 }
-                span {
+                div {
                     display: flex;
-                    background-color: white;
+                    background-color:white;
                     border-radius: 0.2em;
                     color: black;
-                    padding: 0;
                     margin: 0;
+                    span {
+                        &.JudgeScoresPositive {
+                            color: #0FBD48;
+                        }
+                        &.JudgeScoresNegative {
+                            color: #D54C2E;
+                        }
+                        margin: 0.2em;
+                    }
                 }
             }
         }

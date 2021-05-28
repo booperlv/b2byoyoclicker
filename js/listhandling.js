@@ -106,11 +106,12 @@ const newPlayerListEntryHTML = (listobject) => {
 
         <div> first inline
 		    <p> Name Of Player </p>
-            <span> delete the entire li entry </span>
+            <span> delete the entire li entry button </span>
         </div>
 
         <div> second inline
-		    <span> Summary Scores </span>
+		    <span> Summary Scores Positive </span>
+            <span> Summary Scores Negative </span>
 		    <button> Toggle Visibility of span below </button>
         </div> for inline
 
@@ -120,7 +121,10 @@ const newPlayerListEntryHTML = (listobject) => {
 			    <p> 
 				    Judge Name
 			    </p>
-				<span> Per Judge Score </span>
+                <div> score container
+				    <span> Per Judge Score Positive </span>
+				    <span> Per Judge Score Negative </span>
+                </div>
 			</div>
 		</div>
 
@@ -130,10 +134,6 @@ const newPlayerListEntryHTML = (listobject) => {
 
     let playername = listobject.playername;
     let judgearray = listobject.judgearray;
-
-
-    let perjudgeinfo = document.createElement('div');
-    perjudgeinfo.style.display = 'none';
 
 
     let nameparagraph = document.createElement('p');
@@ -157,10 +157,19 @@ const newPlayerListEntryHTML = (listobject) => {
     firstlinediv.appendChild(deleteplayerspan);
 
 
-    let summaryscore = document.createElement('span');
-    summaryscore.innerHTML = `${listobject.sumobject.plusDivideByLength(
+    let summaryscorepositive = document.createElement('span');
+    summaryscorepositive.setAttribute('class', 'SummaryScorePositive')
+    summaryscorepositive.innerHTML = `${listobject.sumobject.plusDivideByLength(
         judgearray.length
-    )} ${listobject.sumobject.minusDivideByLength(judgearray.length)}`;
+    )}`
+    let summaryscorenegative = document.createElement('span');
+    summaryscorenegative.setAttribute('class', 'SummaryScoreNegative')
+    summaryscorenegative.innerHTML = `${listobject.sumobject.minusDivideByLength(judgearray.length)}`
+
+    let summaryscorecontainer = document.createElement('div');
+    summaryscorecontainer.setAttribute('class', 'SummaryScoreContainer');
+    summaryscorecontainer.appendChild(summaryscorepositive)
+    summaryscorecontainer.appendChild(summaryscorenegative)
 
     let togglebutton = document.createElement('button');
     let buttonicon = document.createElement('i');
@@ -173,23 +182,39 @@ const newPlayerListEntryHTML = (listobject) => {
             perjudgeinfo.style.display = 'none';
         }
     });
-    judgearray.forEach((object) => {
-        let judgediv = document.createElement('div');
-        let judgename = document.createElement('p');
-        let judgescores = document.createElement('span');
-        judgename.innerHTML = `${object.judgename}`;
-        judgescores.innerHTML = `+${object.positive}  -${object.negative}`;
-        judgediv.appendChild(judgename);
-        judgediv.appendChild(judgescores);
-
-        judgediv.setAttribute('class', 'judgescore');
-        perjudgeinfo.appendChild(judgediv);
-    });
 
     let secondlinediv = document.createElement('div');
-    secondlinediv.appendChild(summaryscore);
+    secondlinediv.appendChild(summaryscorecontainer);
     secondlinediv.appendChild(togglebutton);
     secondlinediv.setAttribute('class', 'inlinescores');
+
+
+    let perjudgeinfo = document.createElement('div');
+    perjudgeinfo.style.display = 'none';
+    //perjudgeinfocontent
+    judgearray.forEach((object) => {
+        let judgename = document.createElement('p');
+        judgename.innerHTML = `${object.judgename}`;
+
+        let judgescorespositive = document.createElement('span');
+        judgescorespositive.setAttribute('class', 'JudgeScoresPositive')
+        judgescorespositive.innerHTML = `+${object.positive}`;
+
+        let judgescoresnegative = document.createElement('span');
+        judgescoresnegative.setAttribute('class', 'JudgeScoresNegative')
+        judgescoresnegative.innerHTML = `-${object.negative}`
+
+        let judgescorescontainer = document.createElement('div');
+        judgescorescontainer.appendChild(judgescorespositive);
+        judgescorescontainer.appendChild(judgescoresnegative);
+
+        let judgediv = document.createElement('div');
+        judgediv.setAttribute('class', 'judgescore');
+        judgediv.appendChild(judgename);
+        judgediv.appendChild(judgescorescontainer)
+
+        perjudgeinfo.appendChild(judgediv);
+    });
 
 
     const listdiv = document.getElementById('PlayerList');
@@ -229,6 +254,8 @@ const newPlayerListEntryHTML = (listobject) => {
         }
     };
     resetScores();
+
+    document.getElementById('NameForSave').value = ''
 };
 document.getElementById('SaveScore').addEventListener('click', function () {
     let object = collectPlayerListEntry(collectJudgeEntryData());

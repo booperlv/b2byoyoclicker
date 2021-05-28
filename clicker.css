@@ -208,13 +208,15 @@ button.allbutton:focus {
 }
 #MiddlePortion #JudgeClickerDir div.JudgeClicker {
   display: flex;
-  padding: 0.25em;
+  padding: 1rem;
+  justify-content: space-around;
+  align-items: center;
 }
 #MiddlePortion #JudgeClickerDir div.JudgeClicker .ClickerContainer {
-  padding: 10%;
+  padding: 5%;
   display: flex;
   flex-flow: column nowrap;
-  justify-content: space-around;
+  justify-content: space-evenly;
   align-items: center;
 }
 #MiddlePortion #JudgeClickerDir div.JudgeClicker .ClickerContainer span {
@@ -222,10 +224,11 @@ button.allbutton:focus {
   font-weight: bold;
 }
 #MiddlePortion #JudgeClickerDir div.JudgeClicker .ClickerContainer button {
+  font-weight: bold;
   text-align: center;
   outline: none;
   background-color: #ffb900;
-  color: black;
+  color: white;
   border: 0.125rem solid #ffb900;
   border-radius: 0.25rem;
 }
@@ -255,6 +258,14 @@ button.allbutton:focus {
   margin: 0;
   padding: 0;
   list-style-type: none;
+  overflow: scroll;
+  overflow-x: hidden;
+  -ms-overflow-style: none;
+  /* Internet Explorer 10+ */
+  scrollbar-width: none;
+}
+#Player ul#PlayerList::-webkit-scrollbar {
+  display: none;
 }
 #Player ul#PlayerList li {
   margin-bottom: 0.2em;
@@ -290,7 +301,12 @@ button.allbutton:focus {
   align-items: center;
   background-color: #6c757d;
 }
-#Player ul#PlayerList li .inlinescores span {
+#Player ul#PlayerList li .inlinescores div.SummaryScoreContainer {
+  display: flex;
+  flex-flow: row wrap;
+}
+#Player ul#PlayerList li .inlinescores div.SummaryScoreContainer span {
+  margin: 0.2em;
   display: flex;
   text-align: center;
   justify-content: center;
@@ -298,6 +314,12 @@ button.allbutton:focus {
   flex: 1 auto auto;
   height: 100%;
   background-color: #6c757d;
+}
+#Player ul#PlayerList li .inlinescores div.SummaryScoreContainer span.SummaryScorePositive {
+  text-shadow: 0 0 0.15em #90E172;
+}
+#Player ul#PlayerList li .inlinescores div.SummaryScoreContainer span.SummaryScoreNegative {
+  text-shadow: 0 0 0.15em #FF9494;
 }
 #Player ul#PlayerList li .inlinescores button {
   height: 100%;
@@ -319,6 +341,7 @@ button.allbutton:focus {
   display: flex;
   flex-flow: row wrap;
   justify-content: space-between;
+  align-items: center;
   padding: 0.5em;
   margin: 0;
   border-bottom: 1px solid white;
@@ -330,13 +353,21 @@ button.allbutton:focus {
   padding: 0;
   margin: 0;
 }
-#Player ul#PlayerList li div.judgescore span {
+#Player ul#PlayerList li div.judgescore div {
   display: flex;
   background-color: white;
   border-radius: 0.2em;
   color: black;
-  padding: 0;
   margin: 0;
+}
+#Player ul#PlayerList li div.judgescore div span {
+  margin: 0.2em;
+}
+#Player ul#PlayerList li div.judgescore div span.JudgeScoresPositive {
+  color: #0FBD48;
+}
+#Player ul#PlayerList li div.judgescore div span.JudgeScoresNegative {
+  color: #D54C2E;
 }
 
 /*# sourceMappingURL=clicker.css.map */
