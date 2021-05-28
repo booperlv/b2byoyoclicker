@@ -188,10 +188,10 @@ const createJudgeClickers = (numberofjudges, judgenamearray, keyobject) => {
     ) {
 
         let positivedisplay = document.createElement('span');
+        positivedisplay.setAttribute('class', 'clickerdisplay positiveclickerdisplay');
         positivedisplay.innerHTML = '0';
 
         let positivesign = document.createElement('span');
-        positivesign.setAttribute('class', 'positivespan');
         positivesign.innerHTML = '+';
         positivesign.appendChild(positivedisplay);
 
@@ -204,10 +204,10 @@ const createJudgeClickers = (numberofjudges, judgenamearray, keyobject) => {
 
 
         let negativedisplay = document.createElement('span');
+        negativedisplay.setAttribute('class', 'clickerdisplay negativeclickerdisplay');
         negativedisplay.innerHTML = '0';
 
         let negativesign = document.createElement('span');
-        negativesign.setAttribute('class', 'negativespan');
         negativesign.innerHTML = '-';
         negativesign.appendChild(negativedisplay);
 

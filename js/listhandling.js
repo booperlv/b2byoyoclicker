@@ -18,12 +18,12 @@ const collectJudgeEntryData = () => {
         let judgedataobject = new judgeEntry();
 
         let positivevalues =
-            currentjudgediv.getElementsByClassName('positivespan');
+            currentjudgediv.getElementsByClassName('positiveclickerdisplay')[0];
         let negativevalues =
-            currentjudgediv.getElementsByClassName('negativespan');
+            currentjudgediv.getElementsByClassName('negativeclickerdisplay')[0];
         judgedataobject.judgename = currentjudgediv.dataset.name;
-        judgedataobject.positive = positivevalues[0].children[0].innerHTML;
-        judgedataobject.negative = negativevalues[0].children[0].innerHTML;
+        judgedataobject.positive = positivevalues.innerHTML;
+        judgedataobject.negative = negativevalues.innerHTML;
 
         judgearray.push(judgedataobject);
     }
@@ -72,12 +72,14 @@ const collectPlayerListEntry = (judgearray) => {
     class listEntry {
         constructor(
             playername,
+            playerelement,
             judgearray,
             sumpositive,
             sumnegative,
             sumobject
         ) {
             this.playername = playername;
+            this.playerelement = playerelement;
             this.judgearray = judgearray;
             this.sumpositive = sumpositive;
             this.sumnegative = sumnegative;
@@ -88,6 +90,7 @@ const collectPlayerListEntry = (judgearray) => {
     let sumobject = collectSumOfEachJudge(judgearray);
     let listentry = new listEntry();
     listentry.playername = playername;
+    listentry.playerelement = document.getElementById('NameForSave');
     listentry.judgearray = judgearray;
     listentry.sumpositive = sumobject.plusDivideByLength(judgearray.length);
     listentry.sumnegative = sumobject.minusDivideByLength(judgearray.length);
@@ -228,7 +231,10 @@ const newPlayerListEntryHTML = (listobject) => {
     playerdiv.appendChild(perjudgeinfo);
 
 
-    listdiv.appendChild(playerdiv);
+    //check if there are clickers
+    if (document.getElementById('JudgeClickerDir').children.length ){
+        listdiv.appendChild(playerdiv);
+    }
 
 
     //Sorts the Children of an element based on their "data-sum" attribute in descending order
@@ -242,20 +248,20 @@ const newPlayerListEntryHTML = (listobject) => {
 
     const resetScores = () => {
         const clickerdir = document.getElementById('JudgeClickerDir');
+        const getclickerspans = clickerdir.getElementsByClassName('clickerdisplay');
         for (
             let currentindex = 0;
-            currentindex < clickerdir.getElementsByTagName('p').length;
+            currentindex < getclickerspans.length;
             currentindex++
         ) {
-            let currentspan =
-                clickerdir.getElementsByTagName('p')[currentindex]
-                    .firstElementChild;
+            let currentspan = getclickerspans[currentindex];
             currentspan.innerHTML = 0;
         }
     };
     resetScores();
 
-    document.getElementById('NameForSave').value = ''
+    //clear input for player name
+    listobject.playerelement.value = ""
 };
 document.getElementById('SaveScore').addEventListener('click', function () {
     let object = collectPlayerListEntry(collectJudgeEntryData());

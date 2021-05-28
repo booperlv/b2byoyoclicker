@@ -1,5 +1,1 @@
 Find good font and provide web-safe fallbacks
-
-Don't add to list when:
-    Clicker Div is Empty//There is no clicker
-    There is no name//No Player Name
