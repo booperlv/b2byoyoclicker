@@ -103,13 +103,11 @@ const handleJudgeNumber = (numberofjudges) => {
         judgenegative.setAttribute('class', 'judgenegative allinput');
         judgenegative.setAttribute('placeholder', 'Negative');
 
-
         let keycontainerdiv = document.createElement('div');
         keycontainerdiv.appendChild(judgepositive);
         keycontainerdiv.appendChild(judgenegative);
 
         let linebreak = document.createElement('br');
-
 
         let judgename = document.createElement('label');
         judgename.innerHTML = `Judge ${displayedindex}`;
@@ -122,7 +120,6 @@ const handleJudgeNumber = (numberofjudges) => {
         keydiv.appendChild(keycontainerdiv);
 
         judgekeydiv.appendChild(keydiv);
-
     }
 };
 //Instantly Create Judge Names On Input
@@ -186,9 +183,11 @@ const createJudgeClickers = (numberofjudges, judgenamearray, keyobject) => {
         currentclicker < numberofjudges;
         currentclicker++
     ) {
-
         let positivedisplay = document.createElement('span');
-        positivedisplay.setAttribute('class', 'clickerdisplay positiveclickerdisplay');
+        positivedisplay.setAttribute(
+            'class',
+            'clickerdisplay positiveclickerdisplay'
+        );
         positivedisplay.innerHTML = '0';
 
         let positivesign = document.createElement('span');
@@ -202,9 +201,11 @@ const createJudgeClickers = (numberofjudges, judgenamearray, keyobject) => {
         });
         positivebuttonarr.push(positivebutton);
 
-
         let negativedisplay = document.createElement('span');
-        negativedisplay.setAttribute('class', 'clickerdisplay negativeclickerdisplay');
+        negativedisplay.setAttribute(
+            'class',
+            'clickerdisplay negativeclickerdisplay'
+        );
         negativedisplay.innerHTML = '0';
 
         let negativesign = document.createElement('span');
@@ -218,20 +219,20 @@ const createJudgeClickers = (numberofjudges, judgenamearray, keyobject) => {
         });
         negativebuttonarr.push(negativebutton);
 
-
         let positivecontainer = document.createElement('div');
-        positivecontainer.className = 'ClickerPositiveContainer ClickerContainer';
+        positivecontainer.className =
+            'ClickerPositiveContainer ClickerContainer';
         positivecontainer.appendChild(positivesign);
         positivecontainer.appendChild(positivebutton);
 
         let negativecontainer = document.createElement('div');
-        negativecontainer.className = 'ClickerNegativeContainer ClickerContainer';
+        negativecontainer.className =
+            'ClickerNegativeContainer ClickerContainer';
         negativecontainer.appendChild(negativesign);
         negativecontainer.appendChild(negativebutton);
 
-
         let clickerdiv = document.createElement('div');
-        clickerdiv.setAttribute('class', 'JudgeClicker')
+        clickerdiv.setAttribute('class', 'JudgeClicker');
         clickerdiv.appendChild(positivecontainer);
         clickerdiv.appendChild(negativecontainer);
         let displayedindex = currentclicker + 1;

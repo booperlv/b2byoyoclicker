@@ -1,6 +1,6 @@
 Split(['#ConfigureMenu', '#MiddlePortion', '#Player'], {
     elementStyle: function (dimension, size) {
-        return { width: size+'vw'};
+        return { width: size + 'vw' };
     },
     sizes: [12.5, 75, 12.5],
     gutterSize: 0.2,
@@ -41,7 +41,7 @@ Split(['#MediaDisplay', '#JudgeClickerDir'], {
     direction: 'vertical',
     gutterAlign: 'start',
     elementStyle: function (dimension, size) {
-        return { height: + size + '%' };
+        return { height: +size + '%' };
     },
     sizes: [85, 15],
     gutterSize: 0.2,

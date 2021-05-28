@@ -15,7 +15,7 @@ html {
 
 * {
     box-sizing: border-box;
-    font-family: 'Fantasque Sans Mono', Arial, Helvetica, sans-serif;
+    font-family: 'Fantasque Sans Mono', 'Courier New', Courier, monospace;
 }
 
 body {
@@ -25,6 +25,7 @@ body {
     margin: 0;
     background-color: #343a40;
     color: white;
+    font-size: 1rem;
 }
 //Arrows
 .arrow {
@@ -219,7 +220,7 @@ button.allbutton:focus {
             justify-content: space-around;
             align-items: center;
             .ClickerContainer {
-                padding: 5%; 
+                padding: 5%;
                 display: flex;
                 flex-flow: column nowrap;
                 justify-content: space-evenly;
@@ -229,24 +230,36 @@ button.allbutton:focus {
                     font-weight: bold;
                 }
                 button {
-                    font-weight: bold;
+                    font-weight: normal;
                     text-align: center;
                     outline: none;
                     background-color: #ffb900;
-                    color: white;
+                    color: black;
                     border: 0.125rem solid #ffb900;
                     border-radius: 0.25rem;
                 }
                 //&.ClickerPositiveContainer {
                 //    button {
                 //        background-color: #90E172;
+                //        border-color: #90E172;
                 //    }
                 //}
                 //&.ClickerNegativeContainer {
                 //    button {
                 //        background-color: #FF9494;
+                //        border-color: #FF9494;
                 //    }
                 //}
+                &.ClickerPositiveContainer {
+                    span {
+                        color: #90e172;
+                    }
+                }
+                &.ClickerNegativeContainer {
+                    span {
+                        color: #ff9494;
+                    }
+                }
             }
         }
     }
@@ -323,10 +336,10 @@ button.allbutton:focus {
                     flex-flow: row wrap;
                     span {
                         &.SummaryScorePositive {
-                            text-shadow: 0 0 0.15em #90E172;
+                            text-shadow: 0 0 0.15em #90e172;
                         }
                         &.SummaryScoreNegative {
-                            text-shadow: 0 0 0.15em #FF9494;
+                            text-shadow: 0 0 0.15em #ff9494;
                         }
                         margin: 0.2em;
                         display: flex;
@@ -372,16 +385,16 @@ button.allbutton:focus {
                 }
                 div {
                     display: flex;
-                    background-color:white;
+                    background-color: white;
                     border-radius: 0.2em;
                     color: black;
                     margin: 0;
                     span {
                         &.JudgeScoresPositive {
-                            color: #0FBD48;
+                            color: #0fbd48;
                         }
                         &.JudgeScoresNegative {
-                            color: #D54C2E;
+                            color: #d54c2e;
                         }
                         margin: 0.2em;
                     }

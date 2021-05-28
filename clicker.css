@@ -14,7 +14,7 @@ html {
 
 * {
   box-sizing: border-box;
-  font-family: "Fantasque Sans Mono", Arial, Helvetica, sans-serif;
+  font-family: "Fantasque Sans Mono", "Courier New", Courier, monospace;
 }
 
 body {
@@ -24,6 +24,7 @@ body {
   margin: 0;
   background-color: #343a40;
   color: white;
+  font-size: 1rem;
 }
 
 .arrow {
@@ -224,13 +225,19 @@ button.allbutton:focus {
   font-weight: bold;
 }
 #MiddlePortion #JudgeClickerDir div.JudgeClicker .ClickerContainer button {
-  font-weight: bold;
+  font-weight: normal;
   text-align: center;
   outline: none;
   background-color: #ffb900;
-  color: white;
+  color: black;
   border: 0.125rem solid #ffb900;
   border-radius: 0.25rem;
+}
+#MiddlePortion #JudgeClickerDir div.JudgeClicker .ClickerContainer.ClickerPositiveContainer span {
+  color: #90e172;
+}
+#MiddlePortion #JudgeClickerDir div.JudgeClicker .ClickerContainer.ClickerNegativeContainer span {
+  color: #ff9494;
 }
 
 #Player {
@@ -316,10 +323,10 @@ button.allbutton:focus {
   background-color: #6c757d;
 }
 #Player ul#PlayerList li .inlinescores div.SummaryScoreContainer span.SummaryScorePositive {
-  text-shadow: 0 0 0.15em #90E172;
+  text-shadow: 0 0 0.15em #90e172;
 }
 #Player ul#PlayerList li .inlinescores div.SummaryScoreContainer span.SummaryScoreNegative {
-  text-shadow: 0 0 0.15em #FF9494;
+  text-shadow: 0 0 0.15em #ff9494;
 }
 #Player ul#PlayerList li .inlinescores button {
   height: 100%;
@@ -364,10 +371,10 @@ button.allbutton:focus {
   margin: 0.2em;
 }
 #Player ul#PlayerList li div.judgescore div span.JudgeScoresPositive {
-  color: #0FBD48;
+  color: #0fbd48;
 }
 #Player ul#PlayerList li div.judgescore div span.JudgeScoresNegative {
-  color: #D54C2E;
+  color: #d54c2e;
 }
 
 /*# sourceMappingURL=clicker.css.map */

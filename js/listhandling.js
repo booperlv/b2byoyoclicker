@@ -17,10 +17,12 @@ const collectJudgeEntryData = () => {
         let currentjudgediv = maindiv.children[currentdiv];
         let judgedataobject = new judgeEntry();
 
-        let positivevalues =
-            currentjudgediv.getElementsByClassName('positiveclickerdisplay')[0];
-        let negativevalues =
-            currentjudgediv.getElementsByClassName('negativeclickerdisplay')[0];
+        let positivevalues = currentjudgediv.getElementsByClassName(
+            'positiveclickerdisplay'
+        )[0];
+        let negativevalues = currentjudgediv.getElementsByClassName(
+            'negativeclickerdisplay'
+        )[0];
         judgedataobject.judgename = currentjudgediv.dataset.name;
         judgedataobject.positive = positivevalues.innerHTML;
         judgedataobject.negative = negativevalues.innerHTML;
@@ -138,7 +140,6 @@ const newPlayerListEntryHTML = (listobject) => {
     let playername = listobject.playername;
     let judgearray = listobject.judgearray;
 
-
     let nameparagraph = document.createElement('p');
     nameparagraph.innerHTML = playername;
 
@@ -159,20 +160,21 @@ const newPlayerListEntryHTML = (listobject) => {
     firstlinediv.appendChild(nameparagraph);
     firstlinediv.appendChild(deleteplayerspan);
 
-
     let summaryscorepositive = document.createElement('span');
-    summaryscorepositive.setAttribute('class', 'SummaryScorePositive')
+    summaryscorepositive.setAttribute('class', 'SummaryScorePositive');
     summaryscorepositive.innerHTML = `${listobject.sumobject.plusDivideByLength(
         judgearray.length
-    )}`
+    )}`;
     let summaryscorenegative = document.createElement('span');
-    summaryscorenegative.setAttribute('class', 'SummaryScoreNegative')
-    summaryscorenegative.innerHTML = `${listobject.sumobject.minusDivideByLength(judgearray.length)}`
+    summaryscorenegative.setAttribute('class', 'SummaryScoreNegative');
+    summaryscorenegative.innerHTML = `${listobject.sumobject.minusDivideByLength(
+        judgearray.length
+    )}`;
 
     let summaryscorecontainer = document.createElement('div');
     summaryscorecontainer.setAttribute('class', 'SummaryScoreContainer');
-    summaryscorecontainer.appendChild(summaryscorepositive)
-    summaryscorecontainer.appendChild(summaryscorenegative)
+    summaryscorecontainer.appendChild(summaryscorepositive);
+    summaryscorecontainer.appendChild(summaryscorenegative);
 
     let togglebutton = document.createElement('button');
     let buttonicon = document.createElement('i');
@@ -191,7 +193,6 @@ const newPlayerListEntryHTML = (listobject) => {
     secondlinediv.appendChild(togglebutton);
     secondlinediv.setAttribute('class', 'inlinescores');
 
-
     let perjudgeinfo = document.createElement('div');
     perjudgeinfo.style.display = 'none';
     //perjudgeinfocontent
@@ -200,12 +201,12 @@ const newPlayerListEntryHTML = (listobject) => {
         judgename.innerHTML = `${object.judgename}`;
 
         let judgescorespositive = document.createElement('span');
-        judgescorespositive.setAttribute('class', 'JudgeScoresPositive')
+        judgescorespositive.setAttribute('class', 'JudgeScoresPositive');
         judgescorespositive.innerHTML = `+${object.positive}`;
 
         let judgescoresnegative = document.createElement('span');
-        judgescoresnegative.setAttribute('class', 'JudgeScoresNegative')
-        judgescoresnegative.innerHTML = `-${object.negative}`
+        judgescoresnegative.setAttribute('class', 'JudgeScoresNegative');
+        judgescoresnegative.innerHTML = `-${object.negative}`;
 
         let judgescorescontainer = document.createElement('div');
         judgescorescontainer.appendChild(judgescorespositive);
@@ -214,11 +215,10 @@ const newPlayerListEntryHTML = (listobject) => {
         let judgediv = document.createElement('div');
         judgediv.setAttribute('class', 'judgescore');
         judgediv.appendChild(judgename);
-        judgediv.appendChild(judgescorescontainer)
+        judgediv.appendChild(judgescorescontainer);
 
         perjudgeinfo.appendChild(judgediv);
     });
-
 
     const listdiv = document.getElementById('PlayerList');
 
@@ -230,12 +230,10 @@ const newPlayerListEntryHTML = (listobject) => {
     playerdiv.appendChild(secondlinediv);
     playerdiv.appendChild(perjudgeinfo);
 
-
     //check if there are clickers
-    if (document.getElementById('JudgeClickerDir').children.length ){
+    if (document.getElementById('JudgeClickerDir').children.length) {
         listdiv.appendChild(playerdiv);
     }
-
 
     //Sorts the Children of an element based on their "data-sum" attribute in descending order
     const sortChildrenToDescend = () => {
@@ -248,7 +246,8 @@ const newPlayerListEntryHTML = (listobject) => {
 
     const resetScores = () => {
         const clickerdir = document.getElementById('JudgeClickerDir');
-        const getclickerspans = clickerdir.getElementsByClassName('clickerdisplay');
+        const getclickerspans =
+            clickerdir.getElementsByClassName('clickerdisplay');
         for (
             let currentindex = 0;
             currentindex < getclickerspans.length;
@@ -261,7 +260,7 @@ const newPlayerListEntryHTML = (listobject) => {
     resetScores();
 
     //clear input for player name
-    listobject.playerelement.value = ""
+    listobject.playerelement.value = '';
 };
 document.getElementById('SaveScore').addEventListener('click', function () {
     let object = collectPlayerListEntry(collectJudgeEntryData());
