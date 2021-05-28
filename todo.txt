@@ -1,3 +1,1 @@
-Style Clicker Buttons and Display
-
 Find good font and provide web-safe fallbacks

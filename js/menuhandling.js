@@ -247,7 +247,7 @@ const createJudgeClickers = (numberofjudges, judgenamearray, keyobject) => {
     //Clear all applied event key handlers ondocument through the global variable
     if (eventKeyHandleArray) {
         eventKeyHandleArray.forEach((keyfunction) => {
-            document.removeEventListener('keypress', keyfunction);
+            document.removeEventListener('keydown', keyfunction);
         });
         eventKeyHandleArray = []; //empty array
     }
@@ -272,7 +272,7 @@ const createJudgeClickers = (numberofjudges, judgenamearray, keyobject) => {
         });
         eventKeyHandleArray.push(eventKeyHandle);
     };
-    document.addEventListener('keypress', eventKeyHandle);
+    document.addEventListener('keydown', eventKeyHandle);
 };
 // Generate Clickers Using Last Two Functions
 document

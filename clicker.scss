@@ -214,19 +214,31 @@ button.allbutton:focus {
 
         div.JudgeClicker {
             display: flex;
-            border: 2px solid black;
+            //border: 2px solid black;
             padding: 0.25em;
             .ClickerContainer {
-                padding: 0.25em;
+                padding: 10%; 
                 display: flex;
                 flex-flow: column nowrap;
                 justify-content: space-around;
                 align-items: center;
+                //&:nth-child(odd) {
+                //    color: #02D432;
+                //}
+                //&:nth-child(even) {
+                //    color: #FF0018;
+                //}
                 span {
                     text-align: center;
+                    font-weight: bold;
                 }
                 button {
                     text-align: center;
+                    outline: none;
+                    background-color: #ffb900;
+                    color: black;
+                    border: 0.125rem solid #ffb900;
+                    border-radius: 0.25rem;
                 }
             }
         }
@@ -289,6 +301,8 @@ button.allbutton:focus {
             .inlinescores {
                 display: flex;
                 flex-flow: row wrap;
+                justify-content: space-between;
+                align-items: center;
                 background-color: #6c757d;
                 span {
                     display: flex;

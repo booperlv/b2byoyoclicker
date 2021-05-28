@@ -2,7 +2,7 @@ Split(['#ConfigureMenu', '#MiddlePortion', '#Player'], {
     elementStyle: function (dimension, size) {
         return { width: size+'vw'};
     },
-    sizes: [10, 80, 10],
+    sizes: [12.5, 75, 12.5],
     gutterSize: 0.2,
     gutterStyle: function (dimension, gutterSize) {
         return {

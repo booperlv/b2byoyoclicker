@@ -208,11 +208,10 @@ button.allbutton:focus {
 }
 #MiddlePortion #JudgeClickerDir div.JudgeClicker {
   display: flex;
-  border: 2px solid black;
   padding: 0.25em;
 }
 #MiddlePortion #JudgeClickerDir div.JudgeClicker .ClickerContainer {
-  padding: 0.25em;
+  padding: 10%;
   display: flex;
   flex-flow: column nowrap;
   justify-content: space-around;
@@ -220,9 +219,15 @@ button.allbutton:focus {
 }
 #MiddlePortion #JudgeClickerDir div.JudgeClicker .ClickerContainer span {
   text-align: center;
+  font-weight: bold;
 }
 #MiddlePortion #JudgeClickerDir div.JudgeClicker .ClickerContainer button {
   text-align: center;
+  outline: none;
+  background-color: #ffb900;
+  color: black;
+  border: 0.125rem solid #ffb900;
+  border-radius: 0.25rem;
 }
 
 #Player {
@@ -281,6 +286,8 @@ button.allbutton:focus {
 #Player ul#PlayerList li .inlinescores {
   display: flex;
   flex-flow: row wrap;
+  justify-content: space-between;
+  align-items: center;
   background-color: #6c757d;
 }
 #Player ul#PlayerList li .inlinescores span {
