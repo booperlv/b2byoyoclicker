@@ -1,7 +1,5 @@
-@font-face {
-  font-family: "Fantasque Sans Mono";
-  src: url("assets/fonts/FantasqueSansMono-Regular.ttf") format("ttf");
-}
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap');
+
 html {
   box-sizing: border-box;
 }
@@ -14,7 +12,8 @@ html {
 
 * {
   box-sizing: border-box;
-  font-family: "Fantasque Sans Mono", "Courier New", Courier, monospace;
+  font-family: "Fira Sans", Roboto, monospace;
+  /* font-size: 1rem; */
 }
 
 body {
@@ -24,7 +23,7 @@ body {
   margin: 0;
   background-color: #343a40;
   color: white;
-  font-size: 1rem;
+  /* font-size: 1.125rem; */
 }
 
 .arrow {
@@ -74,8 +73,7 @@ input.allinput {
   outline: none;
   border: 0.125rem solid white;
   border-radius: 0.25rem;
-  height: 1.5em;
-  margin: 0.25em 0;
+  padding: 0.125rem;
 }
 
 input.allinput:focus {
@@ -89,7 +87,7 @@ button.allbutton {
   color: black;
   border: 0.125rem solid #ffb900;
   border-radius: 0.25rem;
-  margin: 0.25em 0;
+  padding: 0.125rem;
 }
 
 input[type=button].allbutton:focus,
@@ -102,12 +100,10 @@ button.allbutton:focus {
   display: flex;
   width: 100vw;
   height: 100vh;
-  padding: 0;
-  margin: 0;
 }
 #ColumnsContent .column {
   height: 100vh;
-  padding: 0.5rem;
+  padding: 0.975rem;
 }
 
 #ConfigureMenu {
@@ -115,8 +111,6 @@ button.allbutton:focus {
   flex-flow: column nowrap;
   overflow: scroll;
   overflow-x: hidden;
-  -ms-overflow-style: none;
-  /* Internet Explorer 10+ */
   scrollbar-width: none;
 }
 #ConfigureMenu::-webkit-scrollbar {
@@ -126,21 +120,22 @@ button.allbutton:focus {
   width: 100%;
 }
 #ConfigureMenu label.menulabel {
-  font-size: 1em;
+  /* font-size: 1.0125em; */
+  font-size: 0.975em;
+  margin-bottom: 0.25em;
+  margin-top: 0.25em;
 }
 #ConfigureMenu #JudgeNames,
 #ConfigureMenu #JudgeKeys {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 20%;
+  /* --height: 100%; */
   border: 0.15rem solid white;
   border-radius: 0.2rem;
   padding: 0.5rem;
   overflow: scroll;
   overflow-x: hidden;
-  -ms-overflow-style: none;
-  /* Internet Explorer 10+ */
   scrollbar-width: none;
 }
 #ConfigureMenu #JudgeNames::-webkit-scrollbar,
@@ -157,7 +152,9 @@ button.allbutton:focus {
   flex-flow: column nowrap;
   width: 47.5%;
 }
+
 #ConfigureMenu #BottomMenu {
+  padding-top: 0.25em;
   margin-top: auto;
 }
 #ConfigureMenu #BottomMenu #ContainerToggleKey {

@@ -16,30 +16,29 @@
     <body>
         <div id="ColumnsContent">
             <div id="ConfigureMenu" class="column">
-                <label for="NumberOfJudges">How Many Judges?</label>
+                <label for="NumberOfJudges" class="menulabel">How Many Judges?</label>
                 <input
                     name="NumberOfJudges"
                     id="NumberOfJudges"
                     type="number"
                     class="allinput"
                 />
-                <br />
+
                 <label for="JudgeNames" class="menulabel"
                     >Names of the Judges?
                 </label>
                 <div id="JudgeNames"></div>
-                <br />
+
                 <label for="JudgeKeys" class="menulabel">
                     Define the Key Binds!
                 </label>
                 <div id="JudgeKeys"></div>
-                <button id="GenerateJudgeClickers" class="allbutton">
-                    Generate Judge Clickers
-                </button>
-
-                <br />
 
                 <div id="BottomMenu">
+                    <button id="GenerateJudgeClickers" class="allbutton">
+                        Generate Judge Clickers
+                    </button>
+
                     <button id="ContainerToggleKey" class="allbutton">
                         Toggle Key Mode
                     </button>
