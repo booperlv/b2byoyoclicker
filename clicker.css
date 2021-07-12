@@ -13,7 +13,6 @@ html {
 * {
   box-sizing: border-box;
   font-family: "Fira Sans", Roboto, monospace;
-  /* font-size: 1rem; */
 }
 
 body {
@@ -74,6 +73,7 @@ input.allinput {
   border: 0.125rem solid white;
   border-radius: 0.25rem;
   padding: 0.125rem;
+  margin: 0.25rem 0;
 }
 
 input.allinput:focus {
@@ -88,6 +88,7 @@ button.allbutton {
   border: 0.125rem solid #ffb900;
   border-radius: 0.25rem;
   padding: 0.125rem;
+  margin: 0.25rem 0;
 }
 
 input[type=button].allbutton:focus,
@@ -120,7 +121,6 @@ button.allbutton:focus {
   width: 100%;
 }
 #ConfigureMenu label.menulabel {
-  /* font-size: 1.0125em; */
   font-size: 0.975em;
   margin-bottom: 0.25em;
   margin-top: 0.25em;
@@ -130,7 +130,6 @@ button.allbutton:focus {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* --height: 100%; */
   border: 0.15rem solid white;
   border-radius: 0.2rem;
   padding: 0.5rem;
